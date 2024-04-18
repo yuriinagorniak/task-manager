@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Task } from "../models/task.model";
+import { newId } from "../utils/generateId";
 
 
 const NewTaskForm = (): JSX.Element => {
@@ -8,7 +9,10 @@ const NewTaskForm = (): JSX.Element => {
         handleSubmit
     } = useForm<Task>();
 
-    const onSubmit: SubmitHandler<Task> = (data) => console.log(data);
+    const onSubmit: SubmitHandler<Task> = (data) => {
+      data.id = newId();
+      console.log(data);
+    };
 
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
