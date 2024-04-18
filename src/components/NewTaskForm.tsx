@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Task } from "../models/task.model";
 
 
-const NewTaskForm = () => {
+const NewTaskForm = (): JSX.Element => {
     const {
         register,
         handleSubmit
