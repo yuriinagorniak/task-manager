@@ -1,11 +1,11 @@
-type GenerateId = () => number;
+type GenerateId = () => string;
 
-const generateId = (): GenerateId => {
+export const generateId = (prefix: string): GenerateId => {
     let id: number = 0;
 
     return function() {
-        return id++;
+        return prefix + '-' + id++;
     }
 }
 
-export const newId: GenerateId = generateId();
+// export const newId: GenerateId = generateId();
