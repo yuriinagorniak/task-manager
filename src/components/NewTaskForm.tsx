@@ -2,8 +2,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Task } from "../models/task.model";
 import { newId } from "../utils/generateId";
 
+interface NewTaskFormProps {
+  addNewTask: (task: Task) => void;
+}
 
-const NewTaskForm = (): JSX.Element => {
+const NewTaskForm = ({ addNewTask }: NewTaskFormProps): JSX.Element => {
     const {
         register,
         handleSubmit
@@ -12,6 +15,7 @@ const NewTaskForm = (): JSX.Element => {
     const onSubmit: SubmitHandler<Task> = (data) => {
       data.id = newId();
       console.log(data);
+      addNewTask(data);
     };
 
     return (

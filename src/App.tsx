@@ -7,14 +7,18 @@ import { Task } from './models/task.model';
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (task: Task) => {
-    setTasks((prevTasks) => [...prevTasks, ])
+  const addNewTask = (task: Task) => {
+    setTasks((prevTasks) => [...prevTasks, task])
+  }
+
+  const deleteTask = (id: number) => {
+    setTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
   }
 
   return (
     <div className="App">
-      <NewTaskForm />
-      <TasksList tasks={tasks} />
+      <NewTaskForm addNewTask={addNewTask} />
+      <TasksList tasks={tasks} deleteTask={deleteTask} />
     </div>
   );
 }
