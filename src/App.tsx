@@ -1,5 +1,6 @@
 import './App.css';
 import NewTaskForm from './components/NewTaskForm';
+import NewListForm from './components/NewListForm';
 import TaskList from './components/TaskList';
 import { useState } from 'react';
 import { Task } from './models/task.model';
@@ -11,12 +12,12 @@ function App() {
     {
       id: 'list-default',
       title: "Todo",
-      color: "red"
+      color: "#000000",
     }, 
     {
       id: 'list-default-2',
       title: "Todo2",
-      color: "red"
+      color: "#000000",
     }, 
   ]);
 
@@ -28,9 +29,14 @@ function App() {
     setTasks((prevTasks) => prevTasks.filter(task => task.id !== id));
   }
 
+  const addNewList = (list: List) => {
+    setLists((prevLists) => [...prevLists, list]);
+  }
+
   return (
     <div className="App">
       <NewTaskForm lists={lists} addNewTask={addNewTask} />
+      <NewListForm addNewList={addNewList} />
       {lists.map(list => 
         <TaskList key={list.id} title={list.title} tasks={tasks.filter(task => task.listId === list.id)} deleteTask={deleteTask} />
       )}
