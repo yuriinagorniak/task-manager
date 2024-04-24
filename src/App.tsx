@@ -45,18 +45,22 @@ function App() {
 
     return (
         <div className="App">
-            <NewTaskForm lists={lists} addNewTask={addNewTask} />
-            <NewListForm addNewList={addNewList} />
-            {lists.map((list) => (
-                <TaskList
-                    key={list.id}
-                    listData={list}
-                    title={list.title}
-                    tasks={tasks.filter((task) => task.listId === list.id)}
-                    deleteTask={deleteTask}
-                    deleteList={deleteList}
-                />
-            ))}
+            <div className="w-2/3">
+                <div className="flex w-full">
+                    <NewTaskForm lists={lists} addNewTask={addNewTask} />
+                    <NewListForm addNewList={addNewList} />
+                </div>
+                {lists.map((list) => (
+                    <TaskList
+                        key={list.id}
+                        listData={list}
+                        title={list.title}
+                        tasks={tasks.filter((task) => task.listId === list.id)}
+                        deleteTask={deleteTask}
+                        deleteList={deleteList}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
