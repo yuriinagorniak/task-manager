@@ -11,8 +11,6 @@ interface TaskListProps {
 
 
 const TaskList = ({ title, tasks, deleteTask, listData, deleteList }: TaskListProps): JSX.Element => {
-    const color = listData.color;
-    // console.log(+color.split('').filter(symbol => symbol !== "#").join(''));
     return (
         <div className={`m-2 border-2 w-[50%] text-center rounded-md border-["red"]`} style={{ borderColor: listData.color }}>
             <ul>

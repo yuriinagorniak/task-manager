@@ -3,7 +3,6 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
 import { generateId } from "../utils/generateId";
-import { useState } from "react";
 import { InputWithLabel } from "../shared/ui/InputWithLabel";
 import { Input } from "../shared/ui/Input";
 import { Button } from "../shared/ui/Button";
@@ -20,7 +19,6 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
         handleSubmit,
         reset,
         formState,
-        formState: { isSubmitSuccessful },
     } = useForm<Task>();
 
     const onSubmit: SubmitHandler<Task> = (data) => {
@@ -29,7 +27,6 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                 data.listId = lists[0].id;
             }
             data.id = newTaskId();
-            console.log(data);
             addNewTask(data);
         }
     };
@@ -43,7 +40,6 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
     return (
         <div className="w-full m-2 p-2">
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* <input type="text" {...register("title", { required: true })} /> */}
                 <InputWithLabel className="pb-4" htmlFor="title" label="Title:">
                     <Input
                         type="text"
@@ -66,6 +62,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                                 <select
                                     {...register("listId")}
                                     title="Choose the list"
+                                    defaultValue={"Choose the list"}
                                     className="shadow hover:border-gray-500 border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 >
                                     <option style={{ display: "none" }} value="" selected disabled>

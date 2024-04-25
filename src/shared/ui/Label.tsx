@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren } from "react";
+import { forwardRef } from "react";
 
 interface LabelProps {
     label: string;
