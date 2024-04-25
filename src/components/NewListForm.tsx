@@ -3,6 +3,7 @@ import { List } from "../models/list.model";
 import { generateId } from "../utils/generateId";
 import { Input } from "../shared/ui/Input";
 import { InputWithLabel } from "../shared/ui/InputWithLabel";
+import { Button } from "../shared/ui/Button";
 
 interface NewListFormProps {
     addNewList: (list: List) => void;
@@ -20,22 +21,26 @@ const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
     };
 
     return (
-        <div className="w-full m-2">
+        <div className="w-full m-2 p-2">
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* <input type="text" {...register("title", { required: true })}/> */}
-                <InputWithLabel htmlFor="list-name" label="List name:">
+                <InputWithLabel htmlFor="list-title" label="List title:">
                     <Input
                         type="text"
-                        placeholder="Text"
-                        id="list-name"
+                        placeholder="Title"
+                        id="list-title"
                         {...register("title", { required: true })}
                     />
                 </InputWithLabel>
                 <div className="flex gap-2 mt-2">
-                    {/* <input type="color" className="w-full h-10 p-0.5 shadow appearance-none border-none rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline" {...register("color")} /> */}
-                    <input type="color" className="w-full h-10 p-0.5 appearance-none bg-transparent border-none outline-none " {...register("color")} />
-
-                    <button type="submit" className="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">Add</button>
+                    <div className="relative w-full h-10 shadow rounded overflow-hidden">
+                        <input
+                            type="color"
+                            defaultValue="#FFF2C2"
+                            className="absolute top-[-20%] left-[-20%] w-[200%] h-[150%] appearance-none bg-transparent border-none outline-none cursor-pointer"
+                            {...register("color")}
+                        />
+                    </div>
+                    <Button type="submit">Add</Button>
                 </div>
             </form>
         </div>

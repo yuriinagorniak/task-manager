@@ -9,11 +9,14 @@ interface TaskListProps {
     deleteList: (id: string) => void;
 }
 
+
 const TaskList = ({ title, tasks, deleteTask, listData, deleteList }: TaskListProps): JSX.Element => {
+    const color = listData.color;
+    // console.log(+color.split('').filter(symbol => symbol !== "#").join(''));
     return (
-        <div>
+        <div className={`m-2 border-2 w-[50%] text-center rounded-md border-["red"]`} style={{ borderColor: listData.color }}>
             <ul>
-                <h1 style={{ color: listData.color }}>{listData.title}</h1>
+                <h1 style={{ backgroundColor: listData.color }}>{listData.title}</h1>
                 {tasks.map((task) => (
                     <li key={task.id}>
                         <h3>{task.title}</h3>
