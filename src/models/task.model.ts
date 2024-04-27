@@ -1,7 +1,7 @@
 export interface Task {
     id: string;
     title: string;
-    list: string; // this or 
-    listId: string; // this
+    listId: string; 
+    completed: boolean;
     description?: string;
 }

@@ -27,6 +27,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                 data.listId = lists[0].id;
             }
             data.id = newTaskId();
+            data.completed = false;
             addNewTask(data);
         }
     };
