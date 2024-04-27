@@ -7,17 +7,52 @@ import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
 
 function App() {
-    const [tasks, setTasks] = useState<Task[]>([]);
-    const [lists, setLists] = useState<List[]>([
+    const [tasks, setTasks] = useState<Task[]>([
         {
-            id: "list-default",
-            title: "Todo",
-            color: "#000000",
+            id: "task-example-1",
+            title: "task 1",
+            listId: "list-example-1",
+            completed: false,
         },
         {
-            id: "list-default-2",
+            id: "task-example-2",
+            title: "task 2",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "task-example-3",
+            title: "task 3",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "task-example-4",
+            title: "task 4",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "task-example-5",
+            title: "task 5",
+            listId: "list-example-1",
+            completed: false,
+        },
+    ]);
+
+    console.log("tasks");
+    console.log(tasks);
+
+    const [lists, setLists] = useState<List[]>([
+        {
+            id: "list-example-1",
+            title: "Todo",
+            color: "#edb8b8",
+        },
+        {
+            id: "list-example-2",
             title: "Todo2",
-            color: "#000090",
+            color: "#b0b0dd",
         },
     ]);
     const addNewTask = (task: Task) => {
@@ -43,6 +78,18 @@ function App() {
         console.log(lists.length);
     };
 
+    const completeTask = (id: string) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) => {
+                if (task.id === id) {
+                    return { ...task, completed: !task.completed };
+                } else {
+                    return task;
+                }
+            })
+        );
+    };
+
     return (
         <div className="App">
             <div className="w-2/3">
@@ -58,6 +105,7 @@ function App() {
                         tasks={tasks.filter((task) => task.listId === list.id)}
                         deleteTask={deleteTask}
                         deleteList={deleteList}
+                        completeTask={completeTask}
                     />
                 ))}
             </div>
