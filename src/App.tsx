@@ -40,9 +40,6 @@ function App() {
         },
     ]);
 
-    console.log("tasks");
-    console.log(tasks);
-
     const [lists, setLists] = useState<List[]>([
         {
             id: "list-example-1",

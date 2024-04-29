@@ -10,11 +10,6 @@ interface TaskListProps {
     completeTask: (id: string) => void;
 }
 
-const toRGB = (color: string) => {
-    const { style } = new Option();
-    style.color = color;
-    return style.color;
-};
 
 interface hexToRgbReturnProps {
     R: number;
