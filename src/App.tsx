@@ -38,6 +38,36 @@ function App() {
             listId: "list-example-1",
             completed: false,
         },
+        {
+            id: "task-example-6",
+            title: "task 1",
+            listId: "list-example-2",
+            completed: false,
+        },
+        {
+            id: "task-example-7",
+            title: "task 2",
+            listId: "list-example-2",
+            completed: false,
+        },
+        {
+            id: "task-example-8",
+            title: "task 3",
+            listId: "list-example-2",
+            completed: false,
+        },
+        {
+            id: "task-example-9",
+            title: "task 4",
+            listId: "list-example-2",
+            completed: false,
+        },
+        {
+            id: "task-example-10",
+            title: "task 5",
+            listId: "list-example-2",
+            completed: false,
+        },
     ]);
 
     const [lists, setLists] = useState<List[]>([

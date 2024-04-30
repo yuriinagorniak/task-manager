@@ -16,6 +16,9 @@ const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
 
     const onSubmit: SubmitHandler<List> = (data) => {
         data.id = newListId();
+        if (data.color === "#ffffff") {
+            data.color = "#e5e7eb";
+        }
         console.log(data.color);
         addNewList(data);
     };

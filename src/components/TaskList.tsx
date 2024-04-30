@@ -1,5 +1,6 @@
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
+import { TickButton } from "../shared/ui/TickButton";
 
 interface TaskListProps {
     title: string;
@@ -9,7 +10,6 @@ interface TaskListProps {
     deleteList: (id: string) => void;
     completeTask: (id: string) => void;
 }
-
 
 interface hexToRgbReturnProps {
     R: number;
@@ -37,7 +37,7 @@ function getContrastColor(hex: string) {
     }
 
     console.log(hex, rgbColor, brightness);
-    return brightness ? (brightness > 150 ? "#000000" : "#FFFFFF") : "#000000";
+    return brightness ? (brightness > 150 ? "#000000" : "#FFFFFF") : "#ffffff";
 }
 
 const TaskList = ({
@@ -55,7 +55,7 @@ const TaskList = ({
     return (
         <div
             className={`m-2 border-2 w-[50%] text-center rounded-md`}
-            style={{ borderColor: listData.color, backgroundColor: listData.color + "60" }}
+            style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
                 className="flex relative py-1 font-bold"
@@ -77,7 +77,7 @@ const TaskList = ({
             <ul className="py-2 ">
                 {uncompletedTasks.map((task) => (
                     <li key={task.id} className="flex justify-around">
-                        <button onClick={completeTask.bind(null, task.id)}>Complete</button>
+                        <TickButton onClick={completeTask.bind(null, task.id)} color={listData.color} completed={task.completed} />
                         <h3>
                             {task.title} - {task.completed ? "Y" : "N"}
                         </h3>
@@ -99,22 +99,7 @@ const TaskList = ({
                                 key={task.id}
                                 className="flex items-center justify-around text-[#6e6e6e]"
                             >
-                                <button
-                                    className="w-5 h-5 flex items-center justify-center"
-                                    onClick={completeTask.bind(null, task.id)}
-                                >
-                                    <svg
-                                        className="w-full h-full "
-                                        viewBox=".5 .5 15 15"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="m901-250a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm3.48 3.783c.912-.026 1.381 1.081.727 1.717l-5.207 5.207-2.907-2.907c-.982-.942.472-2.396 1.414-1.414l1.493 1.493 3.793-3.793a1 1 0 0 1 .688-.303z"
-                                            fill={listData.color}
-                                            transform="translate(-893 251)"
-                                        />
-                                    </svg>
-                                </button>
+                                <TickButton onClick={completeTask.bind(null, task.id)} color={listData.color} completed={task.completed} />
                                 <h3>
                                     {task.title} - {task.completed ? "Y" : "N"}
                                 </h3>
