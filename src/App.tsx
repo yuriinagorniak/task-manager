@@ -105,6 +105,18 @@ function App() {
         console.log(lists.length);
     };
 
+    const editList = (editedList: List) => {
+        setLists((prevLists) =>
+            prevLists.map((list) => {
+                if (list.id === editedList.id) {
+                    return { ...list, title: editedList.title, color: editedList.color };
+                } else {
+                    return list;
+                }
+            })
+        );
+    };
+
     const completeTask = (id: string) => {
         setTasks((prevTasks) =>
             prevTasks.map((task) => {
@@ -119,7 +131,7 @@ function App() {
 
     return (
         <div className="App">
-            <div className="w-2/3">
+            <div className="w-full">
                 <div className="flex w-full">
                     <NewTaskForm lists={lists} addNewTask={addNewTask} />
                     <NewListForm addNewList={addNewList} />
@@ -133,6 +145,7 @@ function App() {
                         deleteTask={deleteTask}
                         deleteList={deleteList}
                         completeTask={completeTask}
+                        editList={editList}
                     />
                 ))}
             </div>

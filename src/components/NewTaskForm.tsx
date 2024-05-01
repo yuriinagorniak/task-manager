@@ -19,6 +19,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
         handleSubmit,
         reset,
         formState,
+        formState: {errors}
     } = useForm<Task>();
 
     const onSubmit: SubmitHandler<Task> = (data) => {
@@ -46,9 +47,10 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                         type="text"
                         placeholder="Text"
                         id="title"
-                        {...register("title", { required: true })}
+                        {...register("title", { required: "Please enter a title" })}
                     />
                 </InputWithLabel>
+                <p>{errors?.title?.message}</p>
                 <textarea
                     rows={3}
                     className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

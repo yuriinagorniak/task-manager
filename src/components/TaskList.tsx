@@ -1,6 +1,8 @@
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
+import { Input } from "../shared/ui/Input";
 import { TickButton } from "../shared/ui/TickButton";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 interface TaskListProps {
     title: string;
@@ -9,6 +11,7 @@ interface TaskListProps {
     deleteTask: (id: string) => void;
     deleteList: (id: string) => void;
     completeTask: (id: string) => void;
+    editList: (list: List) => void;
 }
 
 interface hexToRgbReturnProps {
@@ -47,10 +50,25 @@ const TaskList = ({
     deleteTask,
     deleteList,
     completeTask,
+    editList,
 }: TaskListProps): JSX.Element => {
     const completedTasks = tasks.filter((task) => task.completed);
     const uncompletedTasks = tasks.filter((task) => !task.completed);
-    console.log(listData.color);
+
+    const { register, handleSubmit } = useForm<List>();
+
+    const onSubmit: SubmitHandler<List> = (data) => {
+        data.id = listData.id;
+        if (data.color === "#ffffff") {
+            data.color = "#e5e7eb";
+        }
+
+        if (!data.title) {
+            data.title = listData.title;
+        }
+
+        editList(data);
+    };
 
     return (
         <div
@@ -58,26 +76,52 @@ const TaskList = ({
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
-                className="flex relative py-1 font-bold"
+                className="flex relative py-1 font-bold text-center"
                 style={{ backgroundColor: listData.color }}
             >
-                <div className="">
-                    <h1 className="w-full " style={{ color: getContrastColor(listData.color) }}>
-                        {listData.title}
-                    </h1>
-                </div>
+                <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>
+                    {listData.title}
+                </h2>
                 <button
                     className="absolute right-[3%]"
                     onClick={deleteList.bind(null, listData.id)}
                 >
                     Delete
                 </button>
+                <div className="group/options">
+                    <div>...</div>                    
+                    <div className="absolute right-[-20%] top-[-50%] w-24 border-2 opacity-0 invisible group-hover/options:opacity-100 group-hover/options:visible">
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>
+                                <div className="flex">
+                                    <Input
+                                        type="text"
+                                        placeholder="Text"
+                                        id="title"
+                                        {...register("title")}
+                                    />
+                                    <input
+                                        type="color"
+                                        defaultValue={listData.color}
+                                        // className="absolute top-[-20%] left-[-20%] w-[200%] h-[150%] appearance-none bg-transparent border-none outline-none cursor-pointer"
+                                        {...register("color")}
+                                    />
+                                </div>
+                                <button type="submit">Change</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             {/* <ul className="py-2 " style={{ backgroundColor: listData.color + "50" }}> */}
             <ul className="py-2 ">
                 {uncompletedTasks.map((task) => (
                     <li key={task.id} className="flex justify-around">
-                        <TickButton onClick={completeTask.bind(null, task.id)} color={listData.color} completed={task.completed} />
+                        <TickButton
+                            onClick={completeTask.bind(null, task.id)}
+                            color={listData.color}
+                            completed={task.completed}
+                        />
                         <h3>
                             {task.title} - {task.completed ? "Y" : "N"}
                         </h3>
@@ -99,7 +143,11 @@ const TaskList = ({
                                 key={task.id}
                                 className="flex items-center justify-around text-[#6e6e6e]"
                             >
-                                <TickButton onClick={completeTask.bind(null, task.id)} color={listData.color} completed={task.completed} />
+                                <TickButton
+                                    onClick={completeTask.bind(null, task.id)}
+                                    color={listData.color}
+                                    completed={task.completed}
+                                />
                                 <h3>
                                     {task.title} - {task.completed ? "Y" : "N"}
                                 </h3>
