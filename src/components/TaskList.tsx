@@ -82,14 +82,9 @@ const TaskList = ({
                 <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>
                     {listData.title}
                 </h2>
-                <button
-                    className="absolute right-[3%]"
-                    onClick={deleteList.bind(null, listData.id)}
-                >
-                    Delete
-                </button>
+
                 <div className="group/options">
-                    <div>...</div>                    
+                    <div>...</div>
                     <div className="absolute right-[-20%] top-[-50%] w-24 border-2 opacity-0 invisible group-hover/options:opacity-100 group-hover/options:visible">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
@@ -110,6 +105,12 @@ const TaskList = ({
                                 <button type="submit">Change</button>
                             </div>
                         </form>
+                        <button
+                            // className="absolute right-[3%]"
+                            onClick={deleteList.bind(null, listData.id)}
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             </div>
