@@ -3,6 +3,11 @@ import { List } from "../models/list.model";
 import { Input } from "../shared/ui/Input";
 import { TickButton } from "../shared/ui/TickButton";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useState, useEffect, useRef } from "react";
+import { SubmitButton } from "../shared/ui/SubmitButton";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 interface TaskListProps {
     title: string;
@@ -39,7 +44,6 @@ function getContrastColor(hex: string) {
         brightness = R * 0.299 + G * 0.587 + B * 0.114;
     }
 
-    console.log(hex, rgbColor, brightness);
     return brightness ? (brightness > 150 ? "#000000" : "#FFFFFF") : "#ffffff";
 }
 
@@ -55,7 +59,7 @@ const TaskList = ({
     const completedTasks = tasks.filter((task) => task.completed);
     const uncompletedTasks = tasks.filter((task) => !task.completed);
 
-    const { register, handleSubmit } = useForm<List>();
+    const { register, handleSubmit, formState, reset } = useForm<List>();
 
     const onSubmit: SubmitHandler<List> = (data) => {
         data.id = listData.id;
@@ -70,22 +74,90 @@ const TaskList = ({
         editList(data);
     };
 
+    useEffect(() => {
+        if (formState.isSubmitSuccessful) {
+            reset();
+            handleClose();
+        }
+    }, [formState, reset]);
+
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        // console.log(event.currentTarget);
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? "edit-list-popover" : undefined;
+
     return (
         <div
             className={`m-2 border-2 w-[50%] text-center rounded-md`}
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
-                className="flex relative py-1 font-bold text-center"
+                className="relative py-1 font-bold text-center"
                 style={{ backgroundColor: listData.color }}
             >
                 <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>
                     {listData.title}
                 </h2>
 
-                <div className="group/options">
-                    <div>...</div>
-                    <div className="absolute right-[-20%] top-[-50%] w-24 border-2 opacity-0 invisible group-hover/options:opacity-100 group-hover/options:visible">
+                <div className="absolute top-[50%] translate-y-[-50%] right-1">
+                    <button style={{ color: getContrastColor(listData.color) }} onClick={handleClick}>
+                        ⠇
+                    </button>
+                    <Popover
+                        anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "right",
+                        }}
+                        transformOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left",
+                        }}
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                    >
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div className="p-2">
+                                <div className="flex gap-2 mb-2">
+                                    <Input
+                                        type="text"
+                                        placeholder="Text"
+                                        id="title"
+                                        defaultValue={listData.title}
+                                        {...register("title")}
+                                    />
+                                    <div className="relative w-full h-10 shadow rounded overflow-hidden">
+                                        <input
+                                            type="color"
+                                            defaultValue={listData.color}
+                                            className="absolute top-[-20%] left-[-20%] w-[200%] h-[150%] appearance-none bg-transparent border-none outline-none cursor-pointer"
+                                            {...register("color")}
+                                        />
+                                    </div>
+                                </div>
+                                <Button style={{ width: "100%" }} variant="contained" color="success" type="submit">Change</Button>
+                                <hr className="my-3"/>
+                                <Button style={{ width: "100%" }} variant="outlined" color="error" onClick={deleteList.bind(null, listData.id)}>Delete</Button>
+                            </div>
+                        </form>
+
+                        
+                    </Popover>
+                </div>
+
+                {/* <div className="group/options">
+                    <div onClick={() => setEditingDialogOpened(prevState => !prevState)} className="cursor-pointer">...</div>
+                    <div className={`absolute right-[-40%] top-[-50%] w-24 border-2 ${editingDialogOpened ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
                                 <div className="flex">
@@ -102,7 +174,7 @@ const TaskList = ({
                                         {...register("color")}
                                     />
                                 </div>
-                                <button type="submit">Change</button>
+                                <button type="submit" onClick={() => setEditingDialogOpened(false)}>Change</button>
                             </div>
                         </form>
                         <button
@@ -112,7 +184,7 @@ const TaskList = ({
                             Delete
                         </button>
                     </div>
-                </div>
+                </div> */}
             </div>
             {/* <ul className="py-2 " style={{ backgroundColor: listData.color + "50" }}> */}
             <ul className="py-2 ">
