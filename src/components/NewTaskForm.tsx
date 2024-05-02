@@ -5,7 +5,7 @@ import { List } from "../models/list.model";
 import { generateId } from "../utils/generateId";
 import { InputWithLabel } from "../shared/ui/InputWithLabel";
 import { Input } from "../shared/ui/Input";
-import { Button } from "../shared/ui/Button";
+import { SubmitButton } from "../shared/ui/SubmitButton";
 
 interface NewTaskFormProps {
     addNewTask: (task: Task) => void;
@@ -82,7 +82,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                             <p>There are no lists</p>
                         )}
                     </div>
-                    <Button type="submit">Add</Button>
+                    <SubmitButton type="submit">Add</SubmitButton>
                 </div>
             </form>
         </div>

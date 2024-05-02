@@ -3,7 +3,7 @@ import { List } from "../models/list.model";
 import { generateId } from "../utils/generateId";
 import { Input } from "../shared/ui/Input";
 import { InputWithLabel } from "../shared/ui/InputWithLabel";
-import { Button } from "../shared/ui/Button";
+import { SubmitButton } from "../shared/ui/SubmitButton";
 
 interface NewListFormProps {
     addNewList: (list: List) => void;
@@ -43,7 +43,7 @@ const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
                             {...register("color")}
                         />
                     </div>
-                    <Button type="submit">Add</Button>
+                    <SubmitButton type="submit">Add</SubmitButton>
                 </div>
             </form>
         </div>
