@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 
 type ButtonProps = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
 
-export const Button = (props: PropsWithChildren<ButtonProps>) => {
+export const SubmitButton = (props: PropsWithChildren<ButtonProps>) => {
     const { children, ...rest } = props;
     return (
         <button
