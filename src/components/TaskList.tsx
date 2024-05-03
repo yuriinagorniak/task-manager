@@ -109,7 +109,10 @@ const TaskList = ({
                 </h2>
 
                 <div className="absolute top-[50%] translate-y-[-50%] right-1">
-                    <button style={{ color: getContrastColor(listData.color) }} onClick={handleClick}>
+                    <button
+                        style={{ color: getContrastColor(listData.color) }}
+                        onClick={handleClick}
+                    >
                         ⠇
                     </button>
                     <Popover
@@ -128,15 +131,17 @@ const TaskList = ({
                     >
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="p-2">
-                                <div className="flex gap-2 mb-2">
-                                    <Input
-                                        type="text"
-                                        placeholder="Text"
-                                        id="title"
-                                        defaultValue={listData.title}
-                                        {...register("title")}
-                                    />
-                                    <div className="relative w-full h-10 shadow rounded overflow-hidden">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <div className="w-36">
+                                        <Input
+                                            type="text"
+                                            placeholder="Text"
+                                            id="title"
+                                            defaultValue={listData.title}
+                                            {...register("title")}
+                                        />
+                                    </div>
+                                    <div className="relative w-10 h-10 shadow rounded overflow-hidden">
                                         <input
                                             type="color"
                                             defaultValue={listData.color}
@@ -145,13 +150,25 @@ const TaskList = ({
                                         />
                                     </div>
                                 </div>
-                                <Button style={{ width: "100%" }} variant="contained" color="success" type="submit">Change</Button>
-                                <hr className="my-3"/>
-                                <Button style={{ width: "100%" }} variant="outlined" color="error" onClick={deleteList.bind(null, listData.id)}>Delete</Button>
+                                <Button
+                                    style={{ width: "100%" }}
+                                    variant="contained"
+                                    color="success"
+                                    type="submit"
+                                >
+                                    Change
+                                </Button>
+                                <hr className="my-3" />
+                                <Button
+                                    style={{ width: "100%" }}
+                                    variant="outlined"
+                                    color="error"
+                                    onClick={deleteList.bind(null, listData.id)}
+                                >
+                                    Delete
+                                </Button>
                             </div>
                         </form>
-
-                        
                     </Popover>
                 </div>
 
