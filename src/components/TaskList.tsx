@@ -97,7 +97,7 @@ const TaskList = ({
 
     return (
         <div
-            className={`m-2 border-2 w-[50%] text-center rounded-md`}
+            className={`m-2 border-2 text-center rounded-md`}
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
@@ -213,7 +213,7 @@ const TaskList = ({
                             completed={task.completed}
                         />
                         <h3>
-                            {task.title} - {task.completed ? "Y" : "N"}
+                            {task.title}
                         </h3>
                         {task.description && <span>{task.description}</span>}
                         <button onClick={deleteTask.bind(null, task.id)}>Delete</button>
@@ -239,7 +239,7 @@ const TaskList = ({
                                     completed={task.completed}
                                 />
                                 <h3>
-                                    {task.title} - {task.completed ? "Y" : "N"}
+                                    {task.title}
                                 </h3>
                                 {task.description && <span>{task.description}</span>}
                                 <button onClick={deleteTask.bind(null, task.id)}>Delete</button>

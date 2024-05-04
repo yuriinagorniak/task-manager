@@ -12,6 +12,7 @@ export const TickButton = ({ onClick, color, completed }: TickButtonProps) => {
                 !completed && "border-2 rounded-full"
             }`}
             onClick={onClick}
+            title={`Mark as ${completed ? "uncompleted" : "completed"}`}
         >
             <svg
                 className={`w-full h-full ${!completed && "invisible group-hover/button:visible"}`}

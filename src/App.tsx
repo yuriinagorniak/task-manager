@@ -5,8 +5,11 @@ import TaskList from "./components/TaskList";
 import { useState } from "react";
 import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
+import { Button } from "@mui/material";
 
 function App() {
+    const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
+
     const [tasks, setTasks] = useState<Task[]>([
         {
             id: "task-example-1",
@@ -132,9 +135,18 @@ function App() {
     return (
         <div className="App">
             <div className="w-full">
-                <div className="flex w-full">
-                    <NewTaskForm lists={lists} addNewTask={addNewTask} />
-                    <NewListForm addNewList={addNewList} />
+                <div>
+                    <div className="flex">
+                        <Button onClick={() => setNewTaskFormDisplayed(true)}>New task</Button>
+                        <Button onClick={() => setNewTaskFormDisplayed(false)}>New list</Button>
+                    </div>
+                    <div className="flex h-64 border-2 m-2">
+                        {newTaskFormDisplayed ? (
+                            <NewTaskForm lists={lists} addNewTask={addNewTask} />
+                        ) : (
+                            <NewListForm addNewList={addNewList} />
+                        )}
+                    </div>
                 </div>
                 {lists.map((list) => (
                     <TaskList

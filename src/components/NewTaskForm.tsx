@@ -60,7 +60,9 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                     <div className="flex w-full h-10">
                         {lists.length >= 1 ? (
                             lists.length === 1 ? (
-                                <span>{lists[0].title}</span>
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <span >{lists[0].title}</span>
+                                </div>
                             ) : (
                                 <select
                                     {...register("listId")}
