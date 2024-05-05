@@ -134,33 +134,60 @@ function App() {
 
     return (
         <div className="App">
-            <div className="w-full">
-                <div>
-                    <div className="flex">
-                        <Button onClick={() => setNewTaskFormDisplayed(true)}>New task</Button>
-                        <Button onClick={() => setNewTaskFormDisplayed(false)}>New list</Button>
+            <main>
+                <div className="w-full">
+                    <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#030369] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {/* <div className="m-2 border-[3px] rounded-md overflow-hidden border-[#030369] bg-[#f4f4fe]"> */}
+                        <div className="flex justify-between text-lg">
+                            <button
+                                className="w-[50%] p-2 rounded-br"
+                                style={{
+                                    backgroundColor: newTaskFormDisplayed ? "transparent" : "#e5e7eb",
+                                    // borderBottom: newTaskFormDisplayed ? "none" : "solid #94a3b8",
+                                    // borderWidth: newTaskFormDisplayed ? "3px" : "2px",
+                                    fontWeight: newTaskFormDisplayed ? "bold" : "normal",
+                                }}
+                                onClick={() => setNewTaskFormDisplayed(true)}
+                            >
+                                New task
+                            </button>
+                            <button
+                                className="w-[50%] p-2 rounded-bl"
+                                style={{
+                                    backgroundColor: !newTaskFormDisplayed ? "transparent" : "#e5e7eb",
+                                    // borderBottom: !newTaskFormDisplayed ? "none" : "2px solid #94a3b8",
+                                    // borderWidth: !newTaskFormDisplayed ? "3px" : "2px",
+                                    fontWeight: !newTaskFormDisplayed ? "bold" : "normal",
+                                }}
+                                onClick={() => setNewTaskFormDisplayed(false)}
+                            >
+                                New list
+                            </button>
+                        </div>
+
+                        {/* alternative border color: #030369 */}
+                        <div className="flex items-center justify-center h-64">
+                            {newTaskFormDisplayed ? (
+                                <NewTaskForm lists={lists} addNewTask={addNewTask} />
+                            ) : (
+                                <NewListForm addNewList={addNewList} />
+                            )}
+                        </div>
                     </div>
-                    <div className="flex h-64 border-2 m-2">
-                        {newTaskFormDisplayed ? (
-                            <NewTaskForm lists={lists} addNewTask={addNewTask} />
-                        ) : (
-                            <NewListForm addNewList={addNewList} />
-                        )}
-                    </div>
+                    {lists.map((list) => (
+                        <TaskList
+                            key={list.id}
+                            listData={list}
+                            title={list.title}
+                            tasks={tasks.filter((task) => task.listId === list.id)}
+                            deleteTask={deleteTask}
+                            deleteList={deleteList}
+                            completeTask={completeTask}
+                            editList={editList}
+                        />
+                    ))}
                 </div>
-                {lists.map((list) => (
-                    <TaskList
-                        key={list.id}
-                        listData={list}
-                        title={list.title}
-                        tasks={tasks.filter((task) => task.listId === list.id)}
-                        deleteTask={deleteTask}
-                        deleteList={deleteList}
-                        completeTask={completeTask}
-                        editList={editList}
-                    />
-                ))}
-            </div>
+            </main>
         </div>
     );
 }
