@@ -97,7 +97,7 @@ const TaskList = ({
 
     return (
         <div
-            className={`m-2 border-2 text-center rounded-md`}
+            className={`mx-2 my-4 border-2 text-center rounded-md shadow-lg appearance-none leading-tight focus:outline-none focus:shadow-outline`}
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
@@ -112,6 +112,7 @@ const TaskList = ({
                     <button
                         style={{ color: getContrastColor(listData.color) }}
                         onClick={handleClick}
+                        title="Options"
                     >
                         ⠇
                     </button>
@@ -212,9 +213,7 @@ const TaskList = ({
                             color={listData.color}
                             completed={task.completed}
                         />
-                        <h3>
-                            {task.title}
-                        </h3>
+                        <h3>{task.title}</h3>
                         {task.description && <span>{task.description}</span>}
                         <button onClick={deleteTask.bind(null, task.id)}>Delete</button>
                     </li>
@@ -238,11 +237,23 @@ const TaskList = ({
                                     color={listData.color}
                                     completed={task.completed}
                                 />
-                                <h3>
-                                    {task.title}
-                                </h3>
+                                <h3>{task.title}</h3>
                                 {task.description && <span>{task.description}</span>}
                                 <button onClick={deleteTask.bind(null, task.id)}>Delete</button>
+                                {/* <Popover
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    transformOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    }}
+                                    id={id}
+                                    open={open}
+                                    anchorEl={anchorEl}
+                                    onClose={handleClose}
+                                ></Popover> */}
                             </li>
                         ))}
                     </ul>
