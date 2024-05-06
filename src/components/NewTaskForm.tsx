@@ -19,7 +19,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
         handleSubmit,
         reset,
         formState,
-        formState: {errors}
+        formState: { errors },
     } = useForm<Task>();
 
     const onSubmit: SubmitHandler<Task> = (data) => {
@@ -53,6 +53,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                 <p>{errors?.title?.message}</p>
                 <textarea
                     rows={3}
+                    placeholder="Description"
                     className="resize-none shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     {...register("description")}
                 />
@@ -61,7 +62,7 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
                         {lists.length >= 1 ? (
                             lists.length === 1 ? (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <span >{lists[0].title}</span>
+                                    <span>{lists[0].title}</span>
                                 </div>
                             ) : (
                                 <select

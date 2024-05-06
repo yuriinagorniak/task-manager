@@ -5,7 +5,6 @@ import TaskList from "./components/TaskList";
 import { useState } from "react";
 import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
-import { Button } from "@mui/material";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
@@ -136,7 +135,8 @@ function App() {
         <div className="App">
             <main>
                 <div className="w-full">
-                    <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#030369] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    {/* <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#030369] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> */}
+                    <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     {/* <div className="m-2 border-[3px] rounded-md overflow-hidden border-[#030369] bg-[#f4f4fe]"> */}
                         <div className="flex justify-between text-lg">
                             <button
