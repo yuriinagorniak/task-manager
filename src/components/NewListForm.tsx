@@ -4,6 +4,7 @@ import { generateId } from "../utils/generateId";
 import { Input } from "../shared/ui/Input";
 import { InputWithLabel } from "../shared/ui/InputWithLabel";
 import { SubmitButton } from "../shared/ui/SubmitButton";
+import { useEffect } from "react";
 
 interface NewListFormProps {
     addNewList: (list: List) => void;
@@ -12,21 +13,26 @@ interface NewListFormProps {
 const newListId = generateId("list");
 
 const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
-    const { register, handleSubmit } = useForm<List>();
+    const { register, handleSubmit, reset, formState } = useForm<List>();
 
     const onSubmit: SubmitHandler<List> = (data) => {
         data.id = newListId();
         if (data.color === "#ffffff") {
             data.color = "#e5e7eb";
         }
-        console.log(data.color);
         addNewList(data);
     };
+
+    useEffect(() => {
+        if (formState.isSubmitSuccessful) {
+            reset();
+        }
+    }, [formState, reset]);
 
     return (
         <div className="w-full m-2 p-2">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <InputWithLabel htmlFor="list-title" label="List title:">
+                <InputWithLabel htmlFor="list-title" label="Title:">
                     <Input
                         type="text"
                         placeholder="Title"
