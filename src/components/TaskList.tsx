@@ -77,23 +77,37 @@ const TaskList = ({
     useEffect(() => {
         if (formState.isSubmitSuccessful) {
             reset();
-            handleClose();
+            editListHandleClose();
         }
     }, [formState, reset]);
 
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+    // editList
+    const [editListAnchor, setEditListAnchor] = useState<HTMLButtonElement | null>(null);
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        // console.log(event.currentTarget);
-        setAnchorEl(event.currentTarget);
+    const editListHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setEditListAnchor(event.currentTarget);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const editListHandleClose = () => {
+        setEditListAnchor(null);
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? "edit-list-popover" : undefined;
+    const editListOpen = Boolean(editListAnchor);
+    const editListId = editListOpen ? "edit-list-popover" : undefined;
+
+    // taskInfo
+    const [taskInfoAnchor, setTaskInfoAnchor] = useState<HTMLButtonElement | null>(null);
+
+    const taskInfoHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setTaskInfoAnchor(event.currentTarget);
+    };
+
+    const taskInfoHandleClose = () => {
+        setTaskInfoAnchor(null);
+    };
+
+    const taskInfoOpen = Boolean(taskInfoAnchor);
+    const taskInfoId = taskInfoOpen ? "edit-list-popover" : undefined;
 
     return (
         <div
@@ -111,7 +125,7 @@ const TaskList = ({
                 <div className="absolute top-[50%] translate-y-[-50%] right-1">
                     <button
                         style={{ color: getContrastColor(listData.color) }}
-                        onClick={handleClick}
+                        onClick={editListHandleClick}
                         title="Options"
                     >
                         ⠇
@@ -125,10 +139,10 @@ const TaskList = ({
                             vertical: "bottom",
                             horizontal: "left",
                         }}
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
+                        id={editListId}
+                        open={editListOpen}
+                        anchorEl={editListAnchor}
+                        onClose={editListHandleClose}
                     >
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="p-2">
@@ -205,17 +219,47 @@ const TaskList = ({
                 </div> */}
             </div>
             {/* <ul className="py-2 " style={{ backgroundColor: listData.color + "50" }}> */}
-            <ul className="py-2 ">
+            <ul className="py-2 flex flex-col items-center">
                 {uncompletedTasks.map((task) => (
-                    <li key={task.id} className="flex justify-around">
+                    <li
+                        key={task.id}
+                        // className="flex justify-around my-1 border-2 w-[90%]"
+                        className="flex items-center my-1 border-2 w-[90%]"
+                        style={{ color: task.completed ? "#6e6e6e" : "#000000" }}
+                    >
                         <TickButton
                             onClick={completeTask.bind(null, task.id)}
                             color={listData.color}
                             completed={task.completed}
                         />
-                        <h3>{task.title}</h3>
-                        {task.description && <span>{task.description}</span>}
-                        <button onClick={deleteTask.bind(null, task.id)}>Delete</button>
+                        <h3 className="w-[70%] border-2 text-left ml-2 truncate">{task.title}</h3>
+                        <div className="flex flex-row gap-2">
+                            {task.description && (
+                                <div>
+                                    <button onClick={taskInfoHandleClick}>Info</button>
+                                    <Popover
+                                        id={taskInfoId}
+                                        open={taskInfoOpen}
+                                        anchorEl={taskInfoAnchor}
+                                        onClose={taskInfoHandleClose}
+                                        anchorOrigin={{
+                                            vertical: "top",
+                                            horizontal: "right",
+                                        }}
+                                        transformOrigin={{
+                                            vertical: "bottom",
+                                            horizontal: "left",
+                                        }}
+                                    >
+                                        <div className="p-2 text-center">
+                                            <p className="font-bold">{task.title}</p>
+                                            {task.description}
+                                        </div>
+                                    </Popover>
+                                </div>
+                            )}
+                            <button onClick={deleteTask.bind(null, task.id)}>Del</button>
+                        </div>
                     </li>
                 ))}
             </ul>
@@ -230,7 +274,8 @@ const TaskList = ({
                         {completedTasks.map((task) => (
                             <li
                                 key={task.id}
-                                className="flex items-center justify-around text-[#6e6e6e]"
+                                className="flex items-center justify-around my-1"
+                                style={{ color: task.completed ? "#6e6e6e" : "#000000" }}
                             >
                                 <TickButton
                                     onClick={completeTask.bind(null, task.id)}
@@ -239,21 +284,8 @@ const TaskList = ({
                                 />
                                 <h3>{task.title}</h3>
                                 {task.description && <span>{task.description}</span>}
-                                <button onClick={deleteTask.bind(null, task.id)}>Delete</button>
-                                {/* <Popover
-                                    anchorOrigin={{
-                                        vertical: "top",
-                                        horizontal: "right",
-                                    }}
-                                    transformOrigin={{
-                                        vertical: "bottom",
-                                        horizontal: "left",
-                                    }}
-                                    id={id}
-                                    open={open}
-                                    anchorEl={anchorEl}
-                                    onClose={handleClose}
-                                ></Popover> */}
+                                <button>Info</button>
+                                <button onClick={deleteTask.bind(null, task.id)}>Del</button>
                             </li>
                         ))}
                     </ul>
