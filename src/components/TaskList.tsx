@@ -106,12 +106,13 @@ const TaskList = ({
         setTaskInfoAnchor(null);
     };
 
+
     const taskInfoOpen = Boolean(taskInfoAnchor);
     const taskInfoId = taskInfoOpen ? "edit-list-popover" : undefined;
 
     return (
         <div
-            className={`mx-2 my-4 border-2 text-center rounded-md shadow-lg appearance-none leading-tight focus:outline-none focus:shadow-outline`}
+            className={`mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline`}
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
@@ -223,10 +224,12 @@ const TaskList = ({
                 {uncompletedTasks.map((task) => (
                     <li
                         key={task.id}
-                        // className="flex justify-around my-1 border-2 w-[90%]"
-                        className="flex items-center my-1 border-2 w-[90%]"
+                        // className="flex justify-around my-1 w-[90%]"
+                        className="flex items-center my-1 justify-between w-[90%]"
                         style={{ color: task.completed ? "#6e6e6e" : "#000000" }}
                     >
+                        <div className="flex items-center w-4/5 sm:w-full ">
+                            <div className="w-5">
                         <TickButton
                             onClick={completeTask.bind(null, task.id)}
                             color={listData.color}
