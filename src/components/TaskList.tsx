@@ -8,6 +8,7 @@ import { SubmitButton } from "../shared/ui/SubmitButton";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { TaskDescriptionPopover } from "../shared/ui/TaskDescriptionPopover";
 
 interface TaskListProps {
     title: string;
@@ -106,13 +107,12 @@ const TaskList = ({
         setTaskInfoAnchor(null);
     };
 
-
     const taskInfoOpen = Boolean(taskInfoAnchor);
     const taskInfoId = taskInfoOpen ? "edit-list-popover" : undefined;
 
     return (
         <div
-            className={`mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline`}
+            className={`border-2 mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline`}
             style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
         >
             <div
@@ -190,7 +190,7 @@ const TaskList = ({
 
                 {/* <div className="group/options">
                     <div onClick={() => setEditingDialogOpened(prevState => !prevState)} className="cursor-pointer">...</div>
-                    <div className={`absolute right-[-40%] top-[-50%] w-24 border-2 ${editingDialogOpened ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                    <div className={`absolute right-[-40%] top-[-50%] w-24 ${editingDialogOpened ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div>
                                 <div className="flex">
@@ -230,11 +230,11 @@ const TaskList = ({
                     >
                         <div className="flex items-center w-4/5 sm:w-full ">
                             <div className="w-5">
-                        <TickButton
-                            onClick={completeTask.bind(null, task.id)}
-                            color={listData.color}
-                            completed={task.completed}
-                        />
+                                <TickButton
+                                    onClick={completeTask.bind(null, task.id)}
+                                    color={listData.color}
+                                    completed={task.completed}
+                                />
                             </div>
                             <h3 className="w-4/5 sm:w-[80%] text-left pl-2 truncate">
                                 {task.title}
@@ -242,68 +242,79 @@ const TaskList = ({
                         </div>
                         <div className="flex items-center justify-end gap-2 w-1/5 sm:w-12 pr-2">
                             {/* {task.description && ( */}
-                                <div className="flex items-center">
-                                    <button className="w-5 h-5" onClick={taskInfoHandleClick}>
-                                        <svg
-                                            fill={listData.color}
-                                            height="100%"
-                                            width="100%"
-                                            version="1.1"
-                                            id="Capa_1"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 330 330"
-                                        >
-                                            <g>
-                                                <path
-                                                    d="M165,0C74.019,0,0,74.02,0,165.001C0,255.982,74.019,330,165,330s165-74.018,165-164.999C330,74.02,255.981,0,165,0z
-		 M165,300c-74.44,0-135-60.56-135-134.999C30,90.562,90.56,30,165,30s135,60.562,135,135.001C300,239.44,239.439,300,165,300z"
-                                                />
-                                                <path
-                                                    d="M164.998,70c-11.026,0-19.996,8.976-19.996,20.009c0,11.023,8.97,19.991,19.996,19.991
-		c11.026,0,19.996-8.968,19.996-19.991C184.994,78.976,176.024,70,164.998,70z"
-                                                />
-                                                <path
-                                                    d="M165,140c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15v-90C180,146.716,173.284,140,165,140z
-		"
-                                                />
-                                            </g>
-                                        </svg>
-                                    </button>
-                                    <Popover
-                                        id={taskInfoId}
-                                        open={taskInfoOpen}
-                                        anchorEl={taskInfoAnchor}
-                                        onClose={taskInfoHandleClose}
-                                        anchorOrigin={{
-                                            vertical: "top",
-                                            horizontal: "right",
-                                        }}
-                                        transformOrigin={{
-                                            vertical: "bottom",
-                                            horizontal: "left",
-                                        }}
-                                    >
-                                        <div className="p-2 text-center">
-                                            <p className="font-bold">{task.title}</p>
-                                            {task.description}
-                                        </div>
-                                    </Popover>
-                                </div>
-                            {/* )} */}
-                            <button className="w-5 h-5 flex items-center" onClick={deleteTask.bind(null, task.id)}>
-                                <svg
-                                    width="100%"
-                                    height="100%"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
+                            <div className="flex items-center">
+                                <TaskDescriptionPopover listColor={listData.color} taskTitle={task.title} taskDescription={task.description} />
+                                {/* <button
+                                    className="w-5 h-5"
+                                    title="Task description"
+                                    onClick={taskInfoHandleClick}
                                 >
-                                    <g fill={listData.color} fill-rule="nonzero">
-                                        <path d="m12 22c5.5228475 0 10-4.4771525 10-10s-4.4771525-10-10-10-10 4.4771525-10 10 4.4771525 10 10 10zm0 2c-6.627417 0-12-5.372583-12-12s5.372583-12 12-12 12 5.372583 12 12-5.372583 12-12 12z" />
-                                        <path d="m9.20710678 16.2071068c-.39052429.3905243-1.02368927.3905243-1.41421356 0s-.39052429-1.0236893 0-1.4142136l6.99999998-6.99999998c.3905243-.39052429 1.0236893-.39052429 1.4142136 0s.3905243 1.02368927 0 1.41421356z" />
-                                        <path d="m7.79289322 9.20710678c-.39052429-.39052429-.39052429-1.02368927 0-1.41421356s1.02368927-.39052429 1.41421356 0l7.00000002 6.99999998c.3905243.3905243.3905243 1.0236893 0 1.4142136s-1.0236893.3905243-1.4142136 0z" />
-                                    </g>
-                                </svg>
-                            </button>
+                                    <svg
+                                        fill={listData.color}
+                                        height="100%"
+                                        width="100%"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 330 330"
+                                    >
+                                        <g>
+                                            <path
+                                                d="M165,0C74.019,0,0,74.02,0,165.001C0,255.982,74.019,330,165,330s165-74.018,165-164.999C330,74.02,255.981,0,165,0z
+		 M165,300c-74.44,0-135-60.56-135-134.999C30,90.562,90.56,30,165,30s135,60.562,135,135.001C300,239.44,239.439,300,165,300z"
+                                            />
+                                            <path
+                                                d="M164.998,70c-11.026,0-19.996,8.976-19.996,20.009c0,11.023,8.97,19.991,19.996,19.991
+		c11.026,0,19.996-8.968,19.996-19.991C184.994,78.976,176.024,70,164.998,70z"
+                                            />
+                                            <path
+                                                d="M165,140c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15v-90C180,146.716,173.284,140,165,140z
+		"
+                                            />
+                                        </g>
+                                    </svg>
+                                </button>
+                                <Popover
+                                    id={taskInfoId}
+                                    open={taskInfoOpen}
+                                    anchorEl={taskInfoAnchor}
+                                    onClose={taskInfoHandleClose}
+                                    anchorOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right",
+                                    }}
+                                    transformOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "left",
+                                    }}
+                                >
+                                    <div className="p-2 text-center">
+                                        <p className="font-bold">{task.title}</p>
+                                        {task.description}
+                                    </div>
+                                </Popover> */}
+                            </div>
+                            {/* )} */}
+                            <div>
+                                <button
+                                    className="w-5 h-5 flex items-center"
+                                    title="Delete the task"
+                                    onClick={deleteTask.bind(null, task.id)}
+                                >
+                                    <svg
+                                        width="100%"
+                                        height="100%"
+                                        viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <g fill={listData.color} fill-rule="nonzero">
+                                            <path d="m12 22c5.5228475 0 10-4.4771525 10-10s-4.4771525-10-10-10-10 4.4771525-10 10 4.4771525 10 10 10zm0 2c-6.627417 0-12-5.372583-12-12s5.372583-12 12-12 12 5.372583 12 12-5.372583 12-12 12z" />
+                                            <path d="m9.20710678 16.2071068c-.39052429.3905243-1.02368927.3905243-1.41421356 0s-.39052429-1.0236893 0-1.4142136l6.99999998-6.99999998c.3905243-.39052429 1.0236893-.39052429 1.4142136 0s.3905243 1.02368927 0 1.41421356z" />
+                                            <path d="m7.79289322 9.20710678c-.39052429-.39052429-.39052429-1.02368927 0-1.41421356s1.02368927-.39052429 1.41421356 0l7.00000002 6.99999998c.3905243.3905243.3905243 1.0236893 0 1.4142136s-1.0236893.3905243-1.4142136 0z" />
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </li>
                 ))}
