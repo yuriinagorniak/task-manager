@@ -187,44 +187,11 @@ const TaskList = ({
                         </form>
                     </Popover>
                 </div>
-
-                {/* <div className="group/options">
-                    <div onClick={() => setEditingDialogOpened(prevState => !prevState)} className="cursor-pointer">...</div>
-                    <div className={`absolute right-[-40%] top-[-50%] w-24 ${editingDialogOpened ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div>
-                                <div className="flex">
-                                    <Input
-                                        type="text"
-                                        placeholder="Text"
-                                        id="title"
-                                        {...register("title")}
-                                    />
-                                    <input
-                                        type="color"
-                                        defaultValue={listData.color}
-                                        // className="absolute top-[-20%] left-[-20%] w-[200%] h-[150%] appearance-none bg-transparent border-none outline-none cursor-pointer"
-                                        {...register("color")}
-                                    />
-                                </div>
-                                <button type="submit" onClick={() => setEditingDialogOpened(false)}>Change</button>
-                            </div>
-                        </form>
-                        <button
-                            // className="absolute right-[3%]"
-                            onClick={deleteList.bind(null, listData.id)}
-                        >
-                            Delete
-                        </button>
-                    </div>
-                </div> */}
             </div>
-            {/* <ul className="py-2 " style={{ backgroundColor: listData.color + "50" }}> */}
             <ul className="py-2 flex flex-col items-center">
                 {uncompletedTasks.map((task) => (
                     <li
                         key={task.id}
-                        // className="flex justify-around my-1 w-[90%]"
                         className="flex items-center my-1 justify-between w-[90%]"
                         style={{ color: task.completed ? "#6e6e6e" : "#000000" }}
                     >
@@ -241,60 +208,14 @@ const TaskList = ({
                             </h3>
                         </div>
                         <div className="flex items-center justify-end gap-2 w-1/5 sm:w-12 pr-2">
-                            {/* {task.description && ( */}
                             <div className="flex items-center">
-                                <TaskDescriptionPopover listColor={listData.color} taskTitle={task.title} taskDescription={task.description} />
-                                {/* <button
-                                    className="w-5 h-5"
-                                    title="Task description"
-                                    onClick={taskInfoHandleClick}
-                                >
-                                    <svg
-                                        fill={listData.color}
-                                        height="100%"
-                                        width="100%"
-                                        version="1.1"
-                                        id="Capa_1"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 330 330"
-                                    >
-                                        <g>
-                                            <path
-                                                d="M165,0C74.019,0,0,74.02,0,165.001C0,255.982,74.019,330,165,330s165-74.018,165-164.999C330,74.02,255.981,0,165,0z
-		 M165,300c-74.44,0-135-60.56-135-134.999C30,90.562,90.56,30,165,30s135,60.562,135,135.001C300,239.44,239.439,300,165,300z"
-                                            />
-                                            <path
-                                                d="M164.998,70c-11.026,0-19.996,8.976-19.996,20.009c0,11.023,8.97,19.991,19.996,19.991
-		c11.026,0,19.996-8.968,19.996-19.991C184.994,78.976,176.024,70,164.998,70z"
-                                            />
-                                            <path
-                                                d="M165,140c-8.284,0-15,6.716-15,15v90c0,8.284,6.716,15,15,15c8.284,0,15-6.716,15-15v-90C180,146.716,173.284,140,165,140z
-		"
-                                            />
-                                        </g>
-                                    </svg>
-                                </button>
-                                <Popover
-                                    id={taskInfoId}
-                                    open={taskInfoOpen}
-                                    anchorEl={taskInfoAnchor}
-                                    onClose={taskInfoHandleClose}
-                                    anchorOrigin={{
-                                        vertical: "top",
-                                        horizontal: "right",
-                                    }}
-                                    transformOrigin={{
-                                        vertical: "bottom",
-                                        horizontal: "left",
-                                    }}
-                                >
-                                    <div className="p-2 text-center">
-                                        <p className="font-bold">{task.title}</p>
-                                        {task.description}
-                                    </div>
-                                </Popover> */}
+                                <TaskDescriptionPopover
+                                    listColor={listData.color}
+                                    taskTitle={task.title}
+                                    taskDescription={task.description}
+                                />
                             </div>
-                            {/* )} */}
+
                             <div>
                                 <button
                                     className="w-5 h-5 flex items-center"
