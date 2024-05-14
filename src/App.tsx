@@ -41,6 +41,20 @@ function App() {
             completed: false,
         },
         {
+            id: "long-task-example-1",
+            title: "Very very very very very very long title",
+            description: "Very very very very very very long description",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "long-task-example-1",
+            title: "Very very very very very very long title",
+            description: "Very very very very very very long description",
+            listId: "list-example-2",
+            completed: false,
+        },
+        {
             id: "task-example-6",
             title: "task 1",
             listId: "list-example-2",
@@ -103,7 +117,6 @@ function App() {
         }
         const newLists = lists.filter((list) => list.id !== id);
         setLists(newLists);
-        // setLists(prevLists => prevLists.filter((list) => list.id !== id));
         console.log(lists.length);
     };
 
@@ -134,17 +147,13 @@ function App() {
     return (
         <div className="App">
             <main>
-                <div className="w-full">
-                    {/* <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#030369] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> */}
+                <div className="w-full min-w-64">
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    {/* <div className="m-2 border-[3px] rounded-md overflow-hidden border-[#030369] bg-[#f4f4fe]"> */}
                         <div className="flex justify-between text-lg">
                             <button
                                 className="w-[50%] p-2 rounded-br"
                                 style={{
                                     backgroundColor: newTaskFormDisplayed ? "transparent" : "#e5e7eb",
-                                    // borderBottom: newTaskFormDisplayed ? "none" : "solid #94a3b8",
-                                    // borderWidth: newTaskFormDisplayed ? "3px" : "2px",
                                     fontWeight: newTaskFormDisplayed ? "bold" : "normal",
                                 }}
                                 onClick={() => setNewTaskFormDisplayed(true)}
@@ -155,8 +164,6 @@ function App() {
                                 className="w-[50%] p-2 rounded-bl"
                                 style={{
                                     backgroundColor: !newTaskFormDisplayed ? "transparent" : "#e5e7eb",
-                                    // borderBottom: !newTaskFormDisplayed ? "none" : "2px solid #94a3b8",
-                                    // borderWidth: !newTaskFormDisplayed ? "3px" : "2px",
                                     fontWeight: !newTaskFormDisplayed ? "bold" : "normal",
                                 }}
                                 onClick={() => setNewTaskFormDisplayed(false)}
