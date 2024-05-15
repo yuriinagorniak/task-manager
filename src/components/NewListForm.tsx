@@ -13,7 +13,7 @@ interface NewListFormProps {
 const newListId = generateId("list");
 
 const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
-    const { register, handleSubmit, reset, formState } = useForm<List>();
+    const { register, handleSubmit, reset, formState, formState: { errors } } = useForm<List>();
 
     const onSubmit: SubmitHandler<List> = (data) => {
         data.id = newListId();
@@ -37,9 +37,10 @@ const NewListForm = ({ addNewList }: NewListFormProps): JSX.Element => {
                         type="text"
                         placeholder="Title"
                         id="list-title"
-                        {...register("title", { required: true })}
+                        {...register("title", { required: "Please enter a title" })}
                     />
                 </InputWithLabel>
+                <p className="text-red-600">{errors?.title?.message}</p>
                 <div className="flex gap-2 mt-2">
                     <div className="relative w-full h-10 shadow rounded overflow-hidden">
                         <input

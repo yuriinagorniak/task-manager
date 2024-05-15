@@ -40,17 +40,17 @@ const NewTaskForm = ({ addNewTask, lists }: NewTaskFormProps): JSX.Element => {
     }, [formState, reset]);
 
     return (
-        <div className="w-full m-2 p-2">
+        <div className="w-full m-2 p-2 pt-0">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <InputWithLabel className="pb-4" htmlFor="title" label="Title:">
+                <InputWithLabel className="mb-2" htmlFor="title" label="Title:">
                     <Input
                         type="text"
                         placeholder="Text"
                         id="title"
                         {...register("title", { required: "Please enter a title" })}
                     />
+                {errors?.title?.message && <p className="h-6 pt-1 text-red-600">{errors?.title?.message}</p>}
                 </InputWithLabel>
-                <p>{errors?.title?.message}</p>
                 <textarea
                     rows={3}
                     placeholder="Description"
