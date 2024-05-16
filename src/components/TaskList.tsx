@@ -1,15 +1,12 @@
+import { useState, useEffect} from "react";
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
 import { Input } from "../shared/ui/Input";
-import { TickButton } from "../shared/ui/TickButton";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState, useEffect, useRef } from "react";
-import { SubmitButton } from "../shared/ui/SubmitButton";
 import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { TaskDescriptionPopover } from "../shared/ui/TaskDescriptionPopover";
 import { TaskItem } from "../shared/ui/TaskItem";
+import { DeleteListButton } from "../shared/ui/DeleteListButton";
 
 interface TaskListProps {
     title: string;
@@ -162,14 +159,7 @@ const TaskList = ({
                                     Change
                                 </Button>
                                 <hr className="my-3" />
-                                <Button
-                                    style={{ width: "100%" }}
-                                    variant="outlined"
-                                    color="error"
-                                    onClick={deleteList.bind(null, listData.id)}
-                                >
-                                    Delete
-                                </Button>
+                                <DeleteListButton listData={listData} listEmpty={tasks.length <= 0} deleteList={deleteList}/>
                             </div>
                         </form>
                     </Popover>
@@ -177,7 +167,12 @@ const TaskList = ({
             </div>
             <ul className="py-2 flex flex-col items-center">
                 {uncompletedTasks.map((task) => (
-                    <TaskItem task={task} listColor={listData.color} completeTask={completeTask} deleteTask={deleteTask} />
+                    <TaskItem
+                        task={task}
+                        listColor={listData.color}
+                        completeTask={completeTask}
+                        deleteTask={deleteTask}
+                    />
                 ))}
             </ul>
 
@@ -189,7 +184,12 @@ const TaskList = ({
                     />
                     <ul className="py-2 flex flex-col items-center">
                         {completedTasks.map((task) => (
-                            <TaskItem task={task} listColor={listData.color} completeTask={completeTask} deleteTask={deleteTask} />
+                            <TaskItem
+                                task={task}
+                                listColor={listData.color}
+                                completeTask={completeTask}
+                                deleteTask={deleteTask}
+                            />
                         ))}
                     </ul>
                 </div>

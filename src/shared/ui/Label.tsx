@@ -6,5 +6,5 @@ interface LabelProps {
 }
 
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(({ label, htmlFor, ...rest }, ref): JSX.Element => {
-    return <label ref={ref} htmlFor={htmlFor} className="block text-gray-700 text-lg font-bold mb-2" {...rest}>{label}</label>;
+    return <label ref={ref} htmlFor={htmlFor} className="block text-gray-700 text-base font-bold mb-2" {...rest}>{label}</label>;
 });
