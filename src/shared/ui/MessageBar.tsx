@@ -3,10 +3,11 @@ import { Snackbar } from "@mui/material";
 
 interface StatusSnackbarProps { 
     message: string;
+    open: boolean;
 }
 
-export const StatusSnackbar = ({ message }: StatusSnackbarProps): JSX.Element => {
-    const [opened, setOpened] = useState(true);
+export const MessageBar = ({ message, open }: StatusSnackbarProps): JSX.Element => {
+    const [opened, setOpened] = useState(open);
 
     const handleClick = () => {
         setOpened(true);
