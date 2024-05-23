@@ -5,9 +5,24 @@ import TaskList from "./components/TaskList";
 import { useState } from "react";
 import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
+import { Snackbar } from "@mui/material";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
+    const [snackbarMessage, setSnackbarMessage] = useState<string>("");
+    const [snackbarOpened, setSnackbarOpened] = useState<boolean>(false);
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        setSnackbarOpened(false);
+    };
+
+    const showMessage = (message: string): void => {
+        setSnackbarMessage(message);
+        setSnackbarOpened(true);
+    }
 
     const [tasks, setTasks] = useState<Task[]>([
         {
@@ -100,16 +115,19 @@ function App() {
     ]);
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
+        showMessage("Task added");
     };
-
+    
     const deleteTask = (id: string) => {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+        showMessage("Task deleted");
     };
-
+    
     const addNewList = (list: List) => {
         setLists((prevLists) => [...prevLists, list]);
+        showMessage("New list created");
     };
-
+    
     const deleteList = (id: string) => {
         if (lists.length === 1) {
             alert("you cannot delete the only remaining list");
@@ -118,6 +136,7 @@ function App() {
         const newLists = lists.filter((list) => list.id !== id);
         setLists(newLists);
         console.log(lists.length);
+        showMessage(`List deleted`);
     };
 
     const editList = (editedList: List) => {
@@ -150,6 +169,7 @@ function App() {
                 <div className="w-full min-w-64">
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
+                            {/* TabButton */}
                             <button
                                 className="w-[50%] p-2 rounded-br"
                                 style={{
@@ -195,6 +215,15 @@ function App() {
                     ))}
                 </div>
             </main>
+            {/* <MessageBar message={snackbarMessage} open={snackbarOpened}/> */}
+            <Snackbar
+                open={snackbarOpened}
+                autoHideDuration={3000}
+                onClose={handleClose}
+                message={snackbarMessage}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
+                key={"bottom center"}
+            />
         </div>
     );
 }
