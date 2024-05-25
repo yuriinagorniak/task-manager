@@ -7,6 +7,7 @@ import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import { TaskItem } from "../shared/ui/TaskItem";
 import { DeleteListButton } from "../shared/ui/DeleteListButton";
+import { getContrastColor } from "../utils/getContrastColor";
 
 interface TaskListProps {
     title: string;
@@ -16,34 +17,6 @@ interface TaskListProps {
     deleteList: (id: string) => void;
     completeTask: (id: string) => void;
     editList: (list: List) => void;
-}
-
-interface hexToRgbReturnProps {
-    R: number;
-    G: number;
-    B: number;
-}
-
-function hexToRgb(hex: string): hexToRgbReturnProps | null {
-    let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-        ? {
-              R: parseInt(result[1], 16),
-              G: parseInt(result[2], 16),
-              B: parseInt(result[3], 16),
-          }
-        : null;
-}
-
-function getContrastColor(hex: string) {
-    const rgbColor = hexToRgb(hex);
-    let brightness: number | null = null;
-    if (rgbColor) {
-        const { R, G, B } = rgbColor;
-        brightness = R * 0.299 + G * 0.587 + B * 0.114;
-    }
-
-    return brightness ? (brightness > 150 ? "#000000" : "#FFFFFF") : "#ffffff";
 }
 
 const TaskList = ({
