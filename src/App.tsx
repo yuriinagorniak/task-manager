@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
 import { Snackbar } from "@mui/material";
+import { FormTabButton } from "./shared/ui/FormTabButton";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
@@ -169,27 +170,8 @@ function App() {
                 <div className="w-full min-w-64">
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
-                            {/* TabButton */}
-                            <button
-                                className="w-[50%] p-2 rounded-br"
-                                style={{
-                                    backgroundColor: newTaskFormDisplayed ? "transparent" : "#e5e7eb",
-                                    fontWeight: newTaskFormDisplayed ? "bold" : "normal",
-                                }}
-                                onClick={() => setNewTaskFormDisplayed(true)}
-                            >
-                                New task
-                            </button>
-                            <button
-                                className="w-[50%] p-2 rounded-bl"
-                                style={{
-                                    backgroundColor: !newTaskFormDisplayed ? "transparent" : "#e5e7eb",
-                                    fontWeight: !newTaskFormDisplayed ? "bold" : "normal",
-                                }}
-                                onClick={() => setNewTaskFormDisplayed(false)}
-                            >
-                                New list
-                            </button>
+                            <FormTabButton isNewFormTab={true} tabDisplayed={newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
+                            <FormTabButton isNewFormTab={false} tabDisplayed={!newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
                         </div>
 
                         {/* alternative border color: #030369 */}
