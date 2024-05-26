@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { TaskItem } from "../shared/ui/TaskItem";
 import { DeleteListButton } from "../shared/ui/DeleteListButton";
 import { getContrastColor } from "../utils/getContrastColor";
+import { EditList } from "./TaskEdit";
 
 interface TaskListProps {
     title: string;
@@ -31,41 +32,41 @@ const TaskList = ({
     const completedTasks = tasks.filter((task) => task.completed);
     const uncompletedTasks = tasks.filter((task) => !task.completed);
 
-    const { register, handleSubmit, formState, reset } = useForm<List>();
+    // const { register, handleSubmit, formState, reset } = useForm<List>();
 
-    const onSubmit: SubmitHandler<List> = (data) => {
-        data.id = listData.id;
-        if (data.color === "#ffffff") {
-            data.color = "#e5e7eb";
-        }
+    // const onSubmit: SubmitHandler<List> = (data) => {
+    //     data.id = listData.id;
+    //     if (data.color === "#ffffff") {
+    //         data.color = "#e5e7eb";
+    //     }
 
-        if (!data.title) {
-            data.title = listData.title;
-        }
+    //     if (!data.title) {
+    //         data.title = listData.title;
+    //     }
 
-        editList(data);
-    };
+    //     editList(data);
+    // };
 
-    useEffect(() => {
-        if (formState.isSubmitSuccessful) {
-            reset();
-            editListHandleClose();
-        }
-    }, [formState, reset]);
+    // useEffect(() => {
+    //     if (formState.isSubmitSuccessful) {
+    //         reset();
+    //         editListHandleClose();
+    //     }
+    // }, [formState, reset]);
 
     // editList
-    const [editListAnchor, setEditListAnchor] = useState<HTMLButtonElement | null>(null);
+    // const [editListAnchor, setEditListAnchor] = useState<HTMLButtonElement | null>(null);
 
-    const editListHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setEditListAnchor(event.currentTarget);
-    };
+    // const editListHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    //     setEditListAnchor(event.currentTarget);
+    // };
 
-    const editListHandleClose = () => {
-        setEditListAnchor(null);
-    };
+    // const editListHandleClose = () => {
+    //     setEditListAnchor(null);
+    // };
 
-    const editListOpen = Boolean(editListAnchor);
-    const editListId = editListOpen ? "edit-list-popover" : undefined;
+    // const editListOpen = Boolean(editListAnchor);
+    // const editListId = editListOpen ? "edit-list-popover" : undefined;
 
     return (
         <div
@@ -80,7 +81,9 @@ const TaskList = ({
                     {listData.title}
                 </h2>
 
-                <div className="absolute top-[50%] translate-y-[-50%] right-1">
+                <EditList listData={listData} listEmpty={tasks.length <= 0} editList={editList} deleteList={deleteList} />
+
+                {/* <div className="absolute top-[50%] translate-y-[-50%] right-1">
                     <button
                         style={{ color: getContrastColor(listData.color) }}
                         onClick={editListHandleClick}
@@ -136,7 +139,7 @@ const TaskList = ({
                             </div>
                         </form>
                     </Popover>
-                </div>
+                </div> */}
             </div>
             <ul className="py-2 flex flex-col items-center">
                 {uncompletedTasks.map((task) => (
