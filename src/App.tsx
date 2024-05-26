@@ -173,8 +173,7 @@ function App() {
                             <FormTabButton isNewFormTab={true} tabDisplayed={newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
                             <FormTabButton isNewFormTab={false} tabDisplayed={!newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
                         </div>
-
-                        {/* alternative border color: #030369 */}
+                        
                         <div className="flex items-center justify-center h-64">
                             {newTaskFormDisplayed ? (
                                 <NewTaskForm lists={lists} addNewTask={addNewTask} />
@@ -197,7 +196,6 @@ function App() {
                     ))}
                 </div>
             </main>
-            {/* <MessageBar message={snackbarMessage} open={snackbarOpened}/> */}
             <Snackbar
                 open={snackbarOpened}
                 autoHideDuration={3000}
