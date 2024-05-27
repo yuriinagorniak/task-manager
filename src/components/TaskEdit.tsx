@@ -1,22 +1,29 @@
 import { useState, useEffect } from "react";
 import { List } from "../models/list.model";
-import { getContrastColor } from "../utils/getContrastColor";
 import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import { DeleteListButton } from "../shared/ui/DeleteListButton";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../shared/ui/Input";
+import { EditListPopover } from "../shared/ui/EditListPopover";
+
+export type editListAnchorType = HTMLButtonElement | null;
 
 interface EditListProps {
     listData: List;
-    listEmpty: boolean
+    listEmpty: boolean;
     editList: (list: List) => void;
     deleteList: (id: string) => void;
 }
 
-export const EditList = ({ listData, editList, listEmpty, deleteList }: EditListProps) => {
-
+export const EditList = ({
+    listData,
+    editList,
+    listEmpty,
+    deleteList,
+}: EditListProps): JSX.Element => {
     const { register, handleSubmit, formState, reset } = useForm<List>();
+    const [editListAnchor, setEditListAnchor] = useState<HTMLButtonElement | null>(null);
 
     const onSubmit: SubmitHandler<List> = (data) => {
         data.id = listData.id;
@@ -30,54 +37,23 @@ export const EditList = ({ listData, editList, listEmpty, deleteList }: EditList
 
         editList(data);
     };
-
-    const [editListAnchor, setEditListAnchor] = useState<HTMLButtonElement | null>(null);
-
-    const editListHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setEditListAnchor(event.currentTarget);
-    };
-
-    const editListHandleClose = () => {
-        setEditListAnchor(null);
-    };
-
-    const editListOpen = Boolean(editListAnchor);
-    const editListId = editListOpen ? "edit-list-popover" : undefined;
-
-    
     
     useEffect(() => {
         if (formState.isSubmitSuccessful) {
             reset();
-            editListHandleClose();
+            setEditListAnchor(null);
         }
     }, [formState, reset]);
 
     return (
         <div className="absolute top-[50%] translate-y-[-50%] right-1">
-            <button
-                style={{ color: getContrastColor(listData.color) }}
-                onClick={editListHandleClick}
-                title="Options"
+            <EditListPopover
+                buttonColor={listData.color}
+                editListAnchor={editListAnchor}
+                setEditListAnchor={setEditListAnchor}
             >
-                ⠇
-            </button>
-            <Popover
-                anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                }}
-                transformOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                }}
-                id={editListId}
-                open={editListOpen}
-                anchorEl={editListAnchor}
-                onClose={editListHandleClose}
-            >
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="p-2">
+                <div className="p-2">
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex items-center gap-2 mb-2">
                             <div className="w-36">
                                 <Input
@@ -105,15 +81,15 @@ export const EditList = ({ listData, editList, listEmpty, deleteList }: EditList
                         >
                             Change
                         </Button>
-                        <hr className="my-3" />
-                        <DeleteListButton
-                            listData={listData}
-                            listEmpty={listEmpty}
-                            deleteList={deleteList}
-                        />
-                    </div>
-                </form>
-            </Popover>
+                    </form>
+                    <hr className="my-3" />
+                    <DeleteListButton
+                        listData={listData}
+                        listEmpty={listEmpty}
+                        deleteList={deleteList}
+                    />
+                </div>
+            </EditListPopover>
         </div>
     );
 };
