@@ -6,9 +6,13 @@ interface DeleteListButtonProps {
     listData: List;
     listEmpty: boolean;
     deleteList: (id: string) => void;
-};
+}
 
-export const DeleteListButton = ({ listData, listEmpty, deleteList }: DeleteListButtonProps): JSX.Element => {
+export const DeleteListButton = ({
+    listData,
+    listEmpty,
+    deleteList,
+}: DeleteListButtonProps): JSX.Element => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -25,7 +29,6 @@ export const DeleteListButton = ({ listData, listEmpty, deleteList }: DeleteList
                 style={{ width: "100%" }}
                 variant="outlined"
                 color="error"
-                // disabled={}
                 onClick={() => {
                     if (!listEmpty) {
                         handleClickOpen();
@@ -36,10 +39,7 @@ export const DeleteListButton = ({ listData, listEmpty, deleteList }: DeleteList
             >
                 Delete
             </Button>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-            >
+            <Dialog open={open} onClose={handleClose}>
                 <div className="px-8 py-6 text-center">
                     <h4 className="font-bold text-2xl">Delete the list {listData.title}?</h4>
                     <p className="mt-2">

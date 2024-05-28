@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { getContrastColor } from "../../utils/getContrastColor";
-import { editListAnchorType } from "../../components/TaskEdit";
-import { Color } from "../../models/color.model";
+import { getContrastColor } from "../utils/getContrastColor";
+import { editListAnchorType } from "./TaskEdit";
+import { Color } from "../models/color.model";
 import Popover from "@mui/material/Popover";
 import React from "react";
 
@@ -17,7 +17,6 @@ export const EditListPopover = ({
     setEditListAnchor,
     buttonColor,
 }: EditListPopoverProps): JSX.Element => {
-    
     const editListHandleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setEditListAnchor(event.currentTarget);
     };

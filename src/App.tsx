@@ -114,6 +114,7 @@ function App() {
             color: "#b0b0dd",
         },
     ]);
+    
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
         showMessage("Task added");

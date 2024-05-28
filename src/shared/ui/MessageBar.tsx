@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Snackbar } from "@mui/material";
 
-interface StatusSnackbarProps { 
+interface StatusSnackbarProps {
     message: string;
     open: boolean;
 }
@@ -19,7 +19,6 @@ export const MessageBar = ({ message, open }: StatusSnackbarProps): JSX.Element 
         }
         setOpened(false);
     };
-
 
     return (
         <div>
