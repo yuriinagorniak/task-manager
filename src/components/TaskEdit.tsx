@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { List } from "../models/list.model";
-import Popover from "@mui/material/Popover";
 import Button from "@mui/material/Button";
 import { DeleteListButton } from "../shared/ui/DeleteListButton";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../shared/ui/Input";
-import { EditListPopover } from "../shared/ui/EditListPopover";
+import { EditListPopover } from "./EditListPopover";
 
 export type editListAnchorType = HTMLButtonElement | null;
 

@@ -1,4 +1,4 @@
-import { TaskElement } from "../shared/ui/TaskIElement";
+import { TaskElement } from "./TaskElement";
 import { Task } from "../models/task.model";
 import { Color } from "../models/color.model";
 

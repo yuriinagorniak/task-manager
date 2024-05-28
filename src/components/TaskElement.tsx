@@ -1,6 +1,6 @@
-import { TickButton } from "./TickButton";
-import { Task } from "../../models/task.model";
-import { Color } from "../../models/color.model";
+import { TickButton } from "../shared/ui/TickButton";
+import { Task } from "../models/task.model";
+import { Color } from "../models/color.model";
 import { TaskDescriptionPopover } from "./TaskDescriptionPopover";
 
 interface TaskElementProps {

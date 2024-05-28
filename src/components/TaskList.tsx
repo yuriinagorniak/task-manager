@@ -1,9 +1,9 @@
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
-import { TaskElement } from "../shared/ui/TaskIElement";
 import { getContrastColor } from "../utils/getContrastColor";
 import { EditList } from "./TaskEdit";
 import { DividingLine } from "../shared/ui/DividingLine";
+import { TaskListItem } from "./TaskListItem";
 
 interface TaskListProps {
     title: string;
@@ -49,31 +49,23 @@ const TaskList = ({
             </div>
 
             {uncompletedTasks.length > 0 && (
-                <ul className="my-2 flex flex-col items-center">
-                    {uncompletedTasks.map((task) => (
-                        <TaskElement
-                            task={task}
-                            listColor={listData.color}
-                            completeTask={completeTask}
-                            deleteTask={deleteTask}
-                        />
-                    ))}
-                </ul>
+                <TaskListItem
+                    tasks={uncompletedTasks}
+                    listColor={listData.color}
+                    completeTask={completeTask}
+                    deleteTask={deleteTask}
+                />
             )}
 
             {completedTasks.length > 0 && (
                 <div>
                     {uncompletedTasks.length > 0 && <DividingLine color={listData.color} />}
-                    <ul className="my-2 flex flex-col items-center">
-                        {completedTasks.map((task) => (
-                            <TaskElement
-                                task={task}
-                                listColor={listData.color}
-                                completeTask={completeTask}
-                                deleteTask={deleteTask}
-                            />
-                        ))}
-                    </ul>
+                    <TaskListItem
+                        tasks={completedTasks}
+                        listColor={listData.color}
+                        completeTask={completeTask}
+                        deleteTask={deleteTask}
+                    />
                 </div>
             )}
         </div>

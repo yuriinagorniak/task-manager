@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Popover } from "@mui/material";
-import { Color } from "../../models/color.model";
+import { Color } from "../models/color.model";
 
 interface TaskDescriptionPopoverProps {
     listColor: Color;

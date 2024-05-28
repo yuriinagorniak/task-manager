@@ -9,7 +9,7 @@ interface FormTabButtonProps {
 export const FormTabButton = ({
     tabDisplayed,
     setTabDisplayed,
-    isNewFormTab
+    isNewFormTab,
 }: FormTabButtonProps): JSX.Element => {
     return (
         <button
