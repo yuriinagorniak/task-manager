@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { getContrastColor } from "../utils/getContrastColor";
 import { editListAnchorType } from "./TaskEdit";
 import { Color } from "../models/color.model";

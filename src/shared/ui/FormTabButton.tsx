@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 interface FormTabButtonProps {
     tabDisplayed: boolean;
     setTabDisplayed: (value: boolean) => void;
