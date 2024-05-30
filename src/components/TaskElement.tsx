@@ -22,7 +22,7 @@ export const TaskElement = ({
             className="flex items-center my-1 justify-between w-[90%]"
             style={{ color: task.completed ? "#6e6e6e" : "#000000" }}
         >
-            <div className="flex items-center w-4/5 sm:w-full ">
+            <div className="flex items-center w-4/5">
                 <div className="w-5">
                     <TickButton
                         onClick={completeTask.bind(null, task.id)}

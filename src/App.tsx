@@ -7,6 +7,7 @@ import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
 import { Snackbar } from "@mui/material";
 import { FormTabButton } from "./shared/ui/FormTabButton";
+import { Masonry } from "@mui/lab";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
@@ -23,7 +24,7 @@ function App() {
     const showMessage = (message: string): void => {
         setSnackbarMessage(message);
         setSnackbarOpened(true);
-    }
+    };
 
     const [tasks, setTasks] = useState<Task[]>([
         {
@@ -53,6 +54,18 @@ function App() {
         {
             id: "task-example-5",
             title: "task 5",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "task-example-11",
+            title: "task 11",
+            listId: "list-example-1",
+            completed: false,
+        },
+        {
+            id: "task-example-12",
+            title: "task 12",
             listId: "list-example-1",
             completed: false,
         },
@@ -100,6 +113,104 @@ function App() {
             listId: "list-example-2",
             completed: false,
         },
+        {
+            id: "long-task-example-13",
+            title: "Very very very very very very long title",
+            description: "Very very very very very very long description",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-63",
+            title: "task 13",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-73",
+            title: "task 23",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-83",
+            title: "task 33",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-93",
+            title: "task 43",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-103",
+            title: "task 53",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-933",
+            title: "task 433",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "task-example-1033",
+            title: "task 533",
+            listId: "list-example-3",
+            completed: false,
+        },
+        {
+            id: "long-task-example-13",
+            title: "Very very very very very very long title",
+            description: "Very very very very very very long description",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-6333",
+            title: "task 13",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-7333",
+            title: "task 23",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-8333",
+            title: "task 33",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-9333",
+            title: "task 43",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-10333",
+            title: "task 53",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-93333",
+            title: "task 433",
+            listId: "list-example-4",
+            completed: false,
+        },
+        {
+            id: "task-example-103333",
+            title: "task 533",
+            listId: "list-example-4",
+            completed: false,
+        },
     ]);
 
     const [lists, setLists] = useState<List[]>([
@@ -113,23 +224,33 @@ function App() {
             title: "Todo2",
             color: "#b0b0dd",
         },
+        {
+            id: "list-example-3",
+            title: "Todo3",
+            color: "#d80808",
+        },
+        {
+            id: "list-example-4",
+            title: "Todo4",
+            color: "#5a883d",
+        },
     ]);
-    
+
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
         showMessage("Task added");
     };
-    
+
     const deleteTask = (id: string) => {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
         showMessage("Task deleted");
     };
-    
+
     const addNewList = (list: List) => {
         setLists((prevLists) => [...prevLists, list]);
         showMessage("New list created");
     };
-    
+
     const deleteList = (id: string) => {
         if (lists.length === 1) {
             alert("you cannot delete the only remaining list");
@@ -168,13 +289,21 @@ function App() {
     return (
         <div className="App">
             <main>
-                <div className="w-full min-w-64">
+                <div className="w-full min-w-64 md:w-[720px] m-auto">
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
-                            <FormTabButton isNewFormTab={true} tabDisplayed={newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
-                            <FormTabButton isNewFormTab={false} tabDisplayed={!newTaskFormDisplayed} setTabDisplayed={setNewTaskFormDisplayed} />
+                            <FormTabButton
+                                isNewFormTab={true}
+                                tabDisplayed={newTaskFormDisplayed}
+                                setTabDisplayed={setNewTaskFormDisplayed}
+                            />
+                            <FormTabButton
+                                isNewFormTab={false}
+                                tabDisplayed={!newTaskFormDisplayed}
+                                setTabDisplayed={setNewTaskFormDisplayed}
+                            />
                         </div>
-                        
+
                         <div className="flex items-center justify-center h-64">
                             {newTaskFormDisplayed ? (
                                 <NewTaskForm lists={lists} addNewTask={addNewTask} />
@@ -183,18 +312,23 @@ function App() {
                             )}
                         </div>
                     </div>
-                    {lists.map((list) => (
-                        <TaskList
-                            key={list.id}
-                            listData={list}
-                            title={list.title}
-                            tasks={tasks.filter((task) => task.listId === list.id)}
-                            deleteTask={deleteTask}
-                            deleteList={deleteList}
-                            completeTask={completeTask}
-                            editList={editList}
-                        />
-                    ))}
+                    {/* <div className="w-full sm:flex sm:flex-wrap sm:items-center sm:justify-around"> */}
+                    <div className="flex items-center justify-center">
+                        <Masonry columns={{ xs: 1, sm: 2, md: 3}} spacing={2} className="border-2">
+                            {lists.map((list) => (
+                                <TaskList
+                                    key={list.id}
+                                    listData={list}
+                                    title={list.title}
+                                    tasks={tasks.filter((task) => task.listId === list.id)}
+                                    deleteTask={deleteTask}
+                                    deleteList={deleteList}
+                                    completeTask={completeTask}
+                                    editList={editList}
+                                />
+                            ))}
+                        </Masonry>
+                    </div>
                 </div>
             </main>
             <Snackbar
@@ -202,7 +336,7 @@ function App() {
                 autoHideDuration={3000}
                 onClose={handleClose}
                 message={snackbarMessage}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center', }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 key={"bottom center"}
             />
         </div>
