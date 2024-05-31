@@ -29,45 +29,47 @@ const TaskList = ({
 
     return (
         <div
-            className={`border-2 mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline`}
-            style={{ borderColor: listData.color, backgroundColor: listData.color + "30" }}
+            className={`border-2 mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline bg-white`}
+            style={{ borderColor: listData.color }}
         >
-            <div
-                className="relative py-1 font-bold text-center"
-                style={{ backgroundColor: listData.color }}
-            >
-                <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>
-                    {listData.title}
-                </h2>
+            <div className="w-full h-full m-0 p-0" style={{ backgroundColor: listData.color + "30" }}>
+                <div
+                    className="relative py-1 font-bold text-center"
+                    style={{ backgroundColor: listData.color }}
+                >
+                    <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>
+                        {listData.title}
+                    </h2>
 
-                <EditList
-                    listData={listData}
-                    listEmpty={tasks.length <= 0}
-                    editList={editList}
-                    deleteList={deleteList}
-                />
-            </div>
+                    <EditList
+                        listData={listData}
+                        listEmpty={tasks.length <= 0}
+                        editList={editList}
+                        deleteList={deleteList}
+                    />
+                </div>
 
-            {uncompletedTasks.length > 0 && (
-                <TaskListItem
-                    tasks={uncompletedTasks}
-                    listColor={listData.color}
-                    completeTask={completeTask}
-                    deleteTask={deleteTask}
-                />
-            )}
-
-            {completedTasks.length > 0 && (
-                <div>
-                    {uncompletedTasks.length > 0 && <DividingLine color={listData.color} />}
+                {uncompletedTasks.length > 0 && (
                     <TaskListItem
-                        tasks={completedTasks}
+                        tasks={uncompletedTasks}
                         listColor={listData.color}
                         completeTask={completeTask}
                         deleteTask={deleteTask}
                     />
-                </div>
-            )}
+                )}
+
+                {completedTasks.length > 0 && (
+                    <div>
+                        {uncompletedTasks.length > 0 && <DividingLine color={listData.color} />}
+                        <TaskListItem
+                            tasks={completedTasks}
+                            listColor={listData.color}
+                            completeTask={completeTask}
+                            deleteTask={deleteTask}
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
