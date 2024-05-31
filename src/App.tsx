@@ -163,7 +163,7 @@ function App() {
             completed: false,
         },
         {
-            id: "long-task-example-13",
+            id: "long-task-example-1311",
             title: "Very very very very very very long title",
             description: "Very very very very very very long description",
             listId: "list-example-4",
@@ -227,12 +227,12 @@ function App() {
         {
             id: "list-example-3",
             title: "Todo3",
-            color: "#d80808",
+            color: "#edb8d9",
         },
         {
             id: "list-example-4",
             title: "Todo4",
-            color: "#5a883d",
+            color: "#eddeb8",
         },
     ]);
 
@@ -314,7 +314,7 @@ function App() {
                     </div>
                     {/* <div className="w-full sm:flex sm:flex-wrap sm:items-center sm:justify-around"> */}
                     <div className="flex items-center justify-center">
-                        <Masonry columns={{ xs: 1, sm: 2, md: 3}} spacing={2} className="border-2">
+                        <Masonry columns={{ xs: 1, sm: 2, xl: 3}} spacing={2}>
                             {lists.map((list) => (
                                 <TaskList
                                     key={list.id}
