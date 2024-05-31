@@ -288,9 +288,9 @@ function App() {
 
     return (
         <div className="App">
-            <main>
+            <main className="p-2">
                 <div className="w-full min-w-64 md:w-[720px] m-auto">
-                    <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] bg-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
                             <FormTabButton
                                 isNewFormTab={true}
