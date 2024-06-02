@@ -30,7 +30,7 @@ export const TaskElement = ({
                         completed={task.completed}
                     />
                 </div>
-                <h3 className="w-4/5 sm:w-[80%] text-left pl-2 truncate">{task.title}</h3>
+                <p className="text-md py-[1px] w-4/5 sm:w-[80%] text-left pl-2 truncate">{task.title}</p>
             </div>
             <div className="flex items-center justify-end gap-2 w-1/5 sm:w-12 pr-2">
                 <TaskDescriptionPopover
