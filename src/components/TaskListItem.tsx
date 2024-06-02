@@ -11,7 +11,7 @@ interface TaskListItemProps {
 
 export const TaskListItem = ({ tasks, listColor, completeTask, deleteTask }: TaskListItemProps) => {
     return (
-        <ul className="my-2 flex flex-col items-center">
+        <ul className="mt-2 flex flex-col items-center">
             {tasks.map((task) => (
                 <TaskElement
                     task={task}
