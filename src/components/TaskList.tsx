@@ -32,9 +32,9 @@ const TaskList = ({
             className={`border-2 mx-2 my-4 text-center rounded-md shadow-lg overflow-hidden appearance-none leading-tight focus:outline-none focus:shadow-outline bg-white`}
             style={{ borderColor: listData.color }}
         >
-            <div className="w-full h-full m-0 p-0" style={{ backgroundColor: listData.color + "30" }}>
+            <div className="m-0 p-0 pb-2" style={{ backgroundColor: listData.color + "30" }}>
                 <div
-                    className="relative py-1 font-bold text-center"
+                    className="relative py-[5px] font-bold text-center"
                     style={{ backgroundColor: listData.color }}
                 >
                     <h2 className="w-full" style={{ color: getContrastColor(listData.color) }}>

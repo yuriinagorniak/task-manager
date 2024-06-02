@@ -136,7 +136,7 @@ function App() {
         },
         {
             id: "task-example-3-4",
-            title: "Finalize guest list",
+            title: "Finalise guest list",
             listId: "list-example-3",
             completed: false,
         },
@@ -159,44 +159,33 @@ function App() {
             completed: false,
         },
         {
-            id: "task-example-6333",
-            title: "task 13",
+            id: "task-example-4-1",
+            title: "Confirm hotel reservation",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-7333",
-            title: "task 23",
+            id: "task-example-4-2",
+            title: "Plan Activities",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-8333",
-            title: "task 33",
+            id: "task-example-4-3",
+            title: "Check weather forecast",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-9333",
-            title: "task 43",
+            id: "task-example-4-4",
+            title: "Confirm transportation",
+            description: "car rental, bus, train, etc.",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-10333",
-            title: "task 53",
-            listId: "list-example-4",
-            completed: false,
-        },
-        {
-            id: "task-example-93333",
-            title: "task 433",
-            listId: "list-example-4",
-            completed: false,
-        },
-        {
-            id: "task-example-103333",
-            title: "task 533",
+            id: "task-example-4-4",
+            title: "Water Plants",
             listId: "list-example-4",
             completed: false,
         },
@@ -220,7 +209,7 @@ function App() {
         },
         {
             id: "list-example-4",
-            title: "Todo4",
+            title: "Weekend Getaway",
             color: "#e8d39d",
         },
     ]);
@@ -282,12 +271,12 @@ function App() {
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] bg-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
                             <FormTabButton
-                                isNewFormTab={true}
+                                isNewTaskTab={true}
                                 tabDisplayed={newTaskFormDisplayed}
                                 setTabDisplayed={setNewTaskFormDisplayed}
                             />
                             <FormTabButton
-                                isNewFormTab={false}
+                                isNewTaskTab={false}
                                 tabDisplayed={!newTaskFormDisplayed}
                                 setTabDisplayed={setNewTaskFormDisplayed}
                             />
