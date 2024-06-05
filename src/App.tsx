@@ -7,12 +7,17 @@ import { Task } from "./models/task.model";
 import { List } from "./models/list.model";
 import { Snackbar } from "@mui/material";
 import { FormTabButton } from "./shared/ui/FormTabButton";
-import { Masonry } from "@mui/lab";
+import Masonry from "react-masonry-css";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
     const [snackbarMessage, setSnackbarMessage] = useState<string>("");
     const [snackbarOpened, setSnackbarOpened] = useState<boolean>(false);
+
+    const breakpointColumnsObj = {
+        default: 2,
+        600: 1
+      };
 
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === "clickaway") {
@@ -28,186 +33,159 @@ function App() {
 
     const [tasks, setTasks] = useState<Task[]>([
         {
-            id: "task-example-1",
-            title: "task 1",
+            id: "task-example-1-1",
+            title: "Milk",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-2",
-            title: "task 2",
+            id: "task-example-1-2",
+            title: "Eggs",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-3",
-            title: "task 3",
+            id: "task-example-1-3",
+            title: "Cheese",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-4",
-            title: "task 4",
+            id: "task-example-1-4",
+            title: "Yogurt",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-5",
-            title: "task 5",
+            id: "task-example-1-5",
+            title: "Sugar",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-11",
-            title: "task 11",
+            id: "task-example-1-6",
+            title: "Bread",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "task-example-12",
-            title: "task 12",
+            id: "task-example-1-7",
+            title: "Pasta",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "long-task-example-1",
-            title: "Very very very very very very long title",
-            description: "Very very very very very very long description",
+            id: "long-task-example-1-1",
+            title: "Breakfast cereael",
+            description: "Porridge oats or unsweetened granola",
             listId: "list-example-1",
             completed: false,
         },
         {
-            id: "long-task-example-1",
-            title: "Very very very very very very long title",
-            description: "Very very very very very very long description",
+            id: "task-example-2-1",
+            title: "Dentist Appointment",
+            description: "June 5, 2024 10:00 AM at Smile Dental Clinic",
             listId: "list-example-2",
             completed: false,
         },
         {
-            id: "task-example-6",
-            title: "task 1",
+            id: "task-example-2-2",
+            title: "Meeting with Financial Advisor",
+            description: "June 8, 2024 2:00 PM at ABC Financial Services",
             listId: "list-example-2",
             completed: false,
         },
         {
-            id: "task-example-7",
-            title: "task 2",
+            id: "task-example-2-3",
+            title: "Physiotherapy Session",
+            description: "June 10, 2024 11:30 AM at Health Plus Physiotherapy",
             listId: "list-example-2",
             completed: false,
         },
         {
-            id: "task-example-8",
-            title: "task 3",
+            id: "task-example-2-4",
+            title: "Parent-Teacher Conference",
+            description: "June 12, 2024 4:00 PM at Greenwood Elementary School",
             listId: "list-example-2",
             completed: false,
         },
         {
-            id: "task-example-9",
-            title: "task 4",
+            id: "task-example-2-5",
+            title: "Business Lunch with Client",
+            description: "June 14, 2024 1:00 PM at The Gourmet Bistro",
             listId: "list-example-2",
             completed: false,
         },
         {
-            id: "task-example-10",
-            title: "task 5",
-            listId: "list-example-2",
-            completed: false,
-        },
-        {
-            id: "long-task-example-13",
-            title: "Very very very very very very long title",
-            description: "Very very very very very very long description",
+            id: "task-example-3-1",
+            title: "Book a venue or plan at home",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-63",
-            title: "task 13",
+            id: "task-example-3-2",
+            title: "Arrange for decorations and supplies",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-73",
-            title: "task 23",
+            id: "task-example-3-3",
+            title: "Order invitations",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-83",
-            title: "task 33",
+            id: "task-example-3-4",
+            title: "Finalise guest list",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-93",
-            title: "task 43",
+            id: "task-example-3-5",
+            title: "Plan activities and games",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-103",
-            title: "task 53",
+            id: "task-example-3-6",
+            title: "Order the birthday cake",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-933",
-            title: "task 433",
+            id: "task-example-3-7",
+            title: "Prepare a playlist or hire entertainment",
             listId: "list-example-3",
             completed: false,
         },
         {
-            id: "task-example-1033",
-            title: "task 533",
-            listId: "list-example-3",
-            completed: false,
-        },
-        {
-            id: "long-task-example-1311",
-            title: "Very very very very very very long title",
-            description: "Very very very very very very long description",
+            id: "task-example-4-1",
+            title: "Confirm hotel reservation",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-6333",
-            title: "task 13",
+            id: "task-example-4-2",
+            title: "Plan Activities",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-7333",
-            title: "task 23",
+            id: "task-example-4-3",
+            title: "Check weather forecast",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-8333",
-            title: "task 33",
+            id: "task-example-4-4",
+            title: "Confirm transportation",
+            description: "car rental, bus, train, etc.",
             listId: "list-example-4",
             completed: false,
         },
         {
-            id: "task-example-9333",
-            title: "task 43",
-            listId: "list-example-4",
-            completed: false,
-        },
-        {
-            id: "task-example-10333",
-            title: "task 53",
-            listId: "list-example-4",
-            completed: false,
-        },
-        {
-            id: "task-example-93333",
-            title: "task 433",
-            listId: "list-example-4",
-            completed: false,
-        },
-        {
-            id: "task-example-103333",
-            title: "task 533",
+            id: "task-example-4-4",
+            title: "Water Plants",
             listId: "list-example-4",
             completed: false,
         },
@@ -215,24 +193,24 @@ function App() {
 
     const [lists, setLists] = useState<List[]>([
         {
-            id: "list-example-1",
-            title: "Todo",
-            color: "#edb8b8",
-        },
-        {
             id: "list-example-2",
-            title: "Todo2",
+            title: "Appointments",
             color: "#b0b0dd",
         },
         {
             id: "list-example-3",
-            title: "Todo3",
+            title: "Birthday Party",
             color: "#edb8d9",
         },
         {
+            id: "list-example-1",
+            title: "Shopping List",
+            color: "#edb8b8",
+        },
+        {
             id: "list-example-4",
-            title: "Todo4",
-            color: "#eddeb8",
+            title: "Weekend Getaway",
+            color: "#e8d39d",
         },
     ]);
 
@@ -293,12 +271,12 @@ function App() {
                     <div className="m-2 overflow-hidden shadow-lg appearance-none border-[3px] rounded-md border-[#d8d9dd] bg-white text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         <div className="flex justify-between text-lg">
                             <FormTabButton
-                                isNewFormTab={true}
+                                isNewTaskTab={true}
                                 tabDisplayed={newTaskFormDisplayed}
                                 setTabDisplayed={setNewTaskFormDisplayed}
                             />
                             <FormTabButton
-                                isNewFormTab={false}
+                                isNewTaskTab={false}
                                 tabDisplayed={!newTaskFormDisplayed}
                                 setTabDisplayed={setNewTaskFormDisplayed}
                             />
@@ -312,9 +290,12 @@ function App() {
                             )}
                         </div>
                     </div>
-                    {/* <div className="w-full sm:flex sm:flex-wrap sm:items-center sm:justify-around"> */}
-                    <div className="flex items-center justify-center">
-                        <Masonry columns={{ xs: 1, sm: 2, xl: 3}} spacing={2}>
+                    <div>
+                        <Masonry
+                            breakpointCols={breakpointColumnsObj}
+                            className="masonry-grid"
+                            columnClassName="masonry-grid_column"
+                        >
                             {lists.map((list) => (
                                 <TaskList
                                     key={list.id}
