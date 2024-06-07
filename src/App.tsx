@@ -236,7 +236,6 @@ function App() {
         }
         const newLists = lists.filter((list) => list.id !== id);
         setLists(newLists);
-        console.log(lists.length);
         showMessage(`List deleted`);
     };
 
