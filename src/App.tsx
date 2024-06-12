@@ -216,12 +216,12 @@ function App() {
 
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
-        showMessage("Task added");
+        showMessage("Task has been added");
     };
 
     const deleteTask = (id: string) => {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-        showMessage("Task deleted");
+        showMessage("Task has been deleted");
     };
 
     const addNewList = (list: List) => {
@@ -231,7 +231,7 @@ function App() {
 
     const deleteList = (id: string) => {
         if (lists.length === 1) {
-            alert("you cannot delete the only remaining list");
+            alert("You cannot delete the only remaining list");
             return false;
         }
         const newLists = lists.filter((list) => list.id !== id);
