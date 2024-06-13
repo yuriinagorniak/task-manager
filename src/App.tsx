@@ -15,8 +15,9 @@ function App() {
     const [snackbarOpened, setSnackbarOpened] = useState<boolean>(false);
 
     const breakpointColumnsObj = {
-        default: 2,
-        600: 1
+        default: 3,
+        600: 1,
+        1500: 2
       };
 
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -216,12 +217,12 @@ function App() {
 
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
-        showMessage("Task has been added");
+        showMessage("Task added");
     };
 
     const deleteTask = (id: string) => {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-        showMessage("Task has been deleted");
+        showMessage("Task deleted");
     };
 
     const addNewList = (list: List) => {
