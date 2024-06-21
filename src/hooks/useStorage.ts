@@ -1,4 +1,4 @@
-export type ALLOWED_LS_KEYS = "TASKS";
+export type ALLOWED_LS_KEYS = "TASKS" | "LISTS";
 
 export const useLocalStorage = () => {
   return {
