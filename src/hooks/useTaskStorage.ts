@@ -5,11 +5,11 @@ export const useTaskStorage = () => {
     const { getFromStorage, setToStorage } = useLocalStorage();
   
     return {
-      getCourseFromStorage: (): Task[] | undefined => {
+      getTaskFromStorage: (): Task[] | undefined => {
         const course = getFromStorage("TASKS");
         return course ? JSON.parse(course) : undefined;
       },
-      setCourseToStorage: (value: Task[]) =>
+      setTaskToStorage: (value: Task[]) =>
         setToStorage("TASKS", JSON.stringify(value)),
     };
   };
