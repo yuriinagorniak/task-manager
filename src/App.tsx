@@ -8,28 +8,14 @@ import { List } from "./models/list.model";
 import { Snackbar } from "@mui/material";
 import { FormTabButton } from "./shared/ui/FormTabButton";
 import Masonry from "react-masonry-css";
+import { useTaskStorage } from "./hooks/useTaskStorage";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
     const [snackbarMessage, setSnackbarMessage] = useState<string>("");
     const [snackbarOpened, setSnackbarOpened] = useState<boolean>(false);
 
-    const breakpointColumnsObj = {
-        default: 2,
-        600: 1,
-      };
-
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-        if (reason === "clickaway") {
-            return;
-        }
-        setSnackbarOpened(false);
-    };
-
-    const showMessage = (message: string): void => {
-        setSnackbarMessage(message);
-        setSnackbarOpened(true);
-    };
+    const { getTaskFromStorage, setTaskToStorage } = useTaskStorage();
 
     const [tasks, setTasks] = useState<Task[]>([
         {
@@ -213,6 +199,24 @@ function App() {
             color: "#e8d39d",
         },
     ]);
+
+    
+    const breakpointColumnsObj = {
+        default: 2,
+        600: 1,
+      };
+
+    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        setSnackbarOpened(false);
+    };
+
+    const showMessage = (message: string): void => {
+        setSnackbarMessage(message);
+        setSnackbarOpened(true);
+    };
 
     const addNewTask = (task: Task) => {
         setTasks((prevTasks) => [...prevTasks, task]);
