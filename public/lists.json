@@ -1,0 +1,22 @@
+[
+    {
+       "id":"list-example-2",
+       "title":"Appointments",
+       "color":"#b0b0dd"
+    },
+    {
+       "id":"list-example-3",
+       "title":"Birthday Party",
+       "color":"#edb8d9"
+    },
+    {
+       "id":"list-example-1",
+       "title":"Shopping List",
+       "color":"#edb8b8"
+    },
+    {
+       "id":"list-example-4",
+       "title":"Weekend Getaway",
+       "color":"#e8d39d"
+    }
+]
