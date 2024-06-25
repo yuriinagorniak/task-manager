@@ -9,6 +9,7 @@ import { Snackbar } from "@mui/material";
 import { FormTabButton } from "./shared/ui/FormTabButton";
 import Masonry from "react-masonry-css";
 import { useTaskStorage } from "./hooks/useTaskStorage";
+import { useTasks } from "./hooks/useTasks";
 
 function App() {
     const [newTaskFormDisplayed, setNewTaskFormDisplayed] = useState<boolean>(true);
@@ -16,6 +17,8 @@ function App() {
     const [snackbarOpened, setSnackbarOpened] = useState<boolean>(false);
 
     const { getTaskFromStorage, setTaskToStorage } = useTaskStorage();
+
+    const { data, loading, error } = useTasks();
 
     const [tasks, setTasks] = useState<Task[]>([
         {
