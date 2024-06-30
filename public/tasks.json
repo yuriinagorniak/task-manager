@@ -43,7 +43,7 @@
     },
     {
        "id":"long-task-example-1-1",
-       "title":"Breakfast cereael",
+       "title":"Breakfast cereal",
        "description":"Porridge oats or unsweetened granola",
        "listId":"list-example-1",
        "completed":false
@@ -151,7 +151,7 @@
        "completed":false
     },
     {
-       "id":"task-example-4-4",
+       "id":"task-example-4-5",
        "title":"Water Plants",
        "listId":"list-example-4",
        "completed":false
