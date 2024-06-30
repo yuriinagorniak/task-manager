@@ -1,11 +1,11 @@
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
 import { getContrastColor } from "../utils/getContrastColor";
-import { EditList } from "./TaskEdit";
+import { EditList } from "./EditList";
 import { DividingLine } from "../shared/ui/DividingLine";
 import { TaskListItem } from "./TaskListItem";
 
-interface TaskListProps {
+interface ListElementProps {
     title: string;
     tasks: Task[];
     listData: List;
@@ -15,7 +15,7 @@ interface TaskListProps {
     editList: (list: List) => void;
 }
 
-const TaskList = ({
+const ListElement = ({
     title,
     tasks,
     listData,
@@ -23,7 +23,7 @@ const TaskList = ({
     deleteList,
     completeTask,
     editList,
-}: TaskListProps): JSX.Element => {
+}: ListElementProps): JSX.Element => {
     const completedTasks = tasks.filter((task) => task.completed);
     const uncompletedTasks = tasks.filter((task) => !task.completed);
 
@@ -74,4 +74,4 @@ const TaskList = ({
     );
 };
 
-export default TaskList;
+export default ListElement;
