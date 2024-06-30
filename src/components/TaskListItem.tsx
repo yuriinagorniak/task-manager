@@ -14,6 +14,7 @@ export const TaskListItem = ({ tasks, listColor, completeTask, deleteTask }: Tas
         <ul className="mt-2 flex flex-col items-center">
             {tasks.map((task) => (
                 <TaskElement
+                    key={task.id}
                     task={task}
                     listColor={listColor}
                     completeTask={completeTask}
