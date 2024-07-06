@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
-import { AppData } from "../models/appData.model";
+import { Task } from "../models/task.model";
 import { TASK_URL } from "../urls";
 import axios from "axios";
 
 export const useTasks = () => {
-    const [data, setData] = useState<AppData>();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+    const [tasks, setTasks] = useState<Task[]>();
 
-    
     useEffect(() => {
-      axios.get(TASK_URL).then((response) => console.log(response)).catch((error) => console.log(error));
+        axios.get(TASK_URL).then((response) => setTasks(response.data)).catch((error) => console.log(error));
     }, []);
-  
-    return { data, loading, error };
-  };
-  
+
+    return { tasks };
+};
