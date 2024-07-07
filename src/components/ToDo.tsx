@@ -72,8 +72,7 @@ export const ToDo = ({ initialLists, initialTasks, showMessage }: ToDoProps): JS
     useEffect(() => {
         setListToStorage(lists);
         setTaskToStorage(tasks);
-        console.log("storage updated");
-    }, [lists, tasks]);
+    }, [lists, setListToStorage, tasks, setTaskToStorage]);
 
     const breakpointColumnsObj = {
         default: 2,
