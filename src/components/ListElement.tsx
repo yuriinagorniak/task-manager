@@ -6,26 +6,18 @@ import { DividingLine } from "../shared/ui/DividingLine";
 import { TaskListItem } from "./TaskListItem";
 
 interface ListElementProps {
-    title: string;
     tasks: Task[];
     listData: List;
-    deleteTask: (id: string) => void;
-    deleteList: (id: string) => void;
     completeTask: (id: string) => void;
+    deleteTask: (id: string) => void;
     editList: (list: List) => void;
+    deleteList: (id: string) => void;
 }
 
-const ListElement = ({
-    title,
-    tasks,
-    listData,
-    deleteTask,
-    deleteList,
-    completeTask,
-    editList,
-}: ListElementProps): JSX.Element => {
-    const completedTasks = tasks.filter((task) => task.completed);
-    const uncompletedTasks = tasks.filter((task) => !task.completed);
+const ListElement = ({ tasks, listData, completeTask, deleteTask, editList, deleteList }: ListElementProps): JSX.Element => {
+
+    const completedTasks = tasks.filter((task) => task.listId === listData.id && task.completed);
+    const uncompletedTasks = tasks.filter((task) => task.listId === listData.id && !task.completed);
 
     return (
         <div
