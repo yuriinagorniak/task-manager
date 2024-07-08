@@ -87,7 +87,7 @@
        "id":"task-example-3-1",
        "title":"Book a venue or plan at home",
        "listId":"list-example-3",
-       "completed":false
+       "completed":true
     },
     {
        "id":"task-example-3-2",
@@ -99,7 +99,7 @@
        "id":"task-example-3-3",
        "title":"Order invitations",
        "listId":"list-example-3",
-       "completed":false
+       "completed":true
     },
     {
        "id":"task-example-3-4",
@@ -123,7 +123,7 @@
        "id":"task-example-3-7",
        "title":"Prepare a playlist or hire entertainment",
        "listId":"list-example-3",
-       "completed":false
+       "completed":true
     },
     {
        "id":"task-example-4-1",
