@@ -1,6 +1,6 @@
 import { useState } from "react";
-import NewTaskForm from "./NewTaskForm";
-import NewListForm from "./NewListForm";
+import NewTaskForm from "../Form/NewTaskForm";
+import NewListForm from "../Form/NewListForm";
 import { FormTabButton } from "../shared/ui/FormTabButton";
 import { Task } from "../models/task.model";
 import { List } from "../models/list.model";
