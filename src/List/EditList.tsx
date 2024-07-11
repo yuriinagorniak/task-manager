@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { DeleteListButton } from "../shared/ui/DeleteListButton";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../shared/ui/Input";
-import { EditListPopover } from "./EditListPopover";
+import { EditListPopover } from "../components/EditListPopover";
 
 export type editListAnchorType = HTMLButtonElement | null;
 
