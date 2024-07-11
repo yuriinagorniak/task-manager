@@ -1,12 +1,12 @@
 import { getContrastColor } from "../utils/getContrastColor";
-import { editListAnchorType } from "./EditList";
+import { EditListAnchorType } from "../List/EditList";
 import { Color } from "../models/color.model";
 import Popover from "@mui/material/Popover";
 import React from "react";
 
 interface EditListPopoverProps extends React.PropsWithChildren {
-    editListAnchor: editListAnchorType;
-    setEditListAnchor: (anchor: editListAnchorType) => void;
+    editListAnchor: EditListAnchorType;
+    setEditListAnchor: (anchor: EditListAnchorType) => void;
     buttonColor: Color;
 }
 

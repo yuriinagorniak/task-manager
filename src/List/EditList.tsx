@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../shared/ui/Input";
 import { EditListPopover } from "../components/EditListPopover";
 
-export type editListAnchorType = HTMLButtonElement | null;
+export type EditListAnchorType = HTMLButtonElement | null;
 
 interface EditListProps {
     listData: List;
