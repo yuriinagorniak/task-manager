@@ -3,7 +3,7 @@ import { List } from "../models/list.model";
 import { getContrastColor } from "../utils/getContrastColor";
 import { EditList } from "./EditList";
 import { DividingLine } from "../shared/ui/DividingLine";
-import { TaskListItem } from "../components/TaskListItem";
+import { TaskListItem } from "./TaskListItem";
 
 interface ListElementProps {
     tasks: Task[];
