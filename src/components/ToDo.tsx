@@ -5,7 +5,7 @@ import { useTaskStorage } from "../hooks/useTaskStorage";
 import { useListStorage } from "../hooks/useListStorage";
 import Masonry from "react-masonry-css";
 import { NewItemForm } from "./NewItemForm";
-import ListElement from "../List/ListElement";
+import ListElement from "./List/ListElement";
 
 interface ToDoProps {
     initialTasks: Task[];
