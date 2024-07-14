@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Task } from "../models/task.model";
-import { List } from "../models/list.model";
-import { generateId } from "../utils/generateId";
-import { InputWithLabel } from "../shared/ui/InputWithLabel";
-import { Input } from "../shared/ui/Input";
-import { SubmitButton } from "../shared/ui/SubmitButton";
+import { Task } from "../../models/task.model";
+import { List } from "../../models/list.model";
+import { generateId } from "../../utils/generateId";
+import { InputWithLabel } from "../../shared/ui/InputWithLabel";
+import { Input } from "../../shared/ui/Input";
+import { SubmitButton } from "../../shared/ui/SubmitButton";
 
 interface NewTaskFormProps {
     addNewTask: (task: Task) => void;

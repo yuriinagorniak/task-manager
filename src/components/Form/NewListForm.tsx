@@ -1,9 +1,9 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { List } from "../models/list.model";
-import { generateId } from "../utils/generateId";
-import { Input } from "../shared/ui/Input";
-import { InputWithLabel } from "../shared/ui/InputWithLabel";
-import { SubmitButton } from "../shared/ui/SubmitButton";
+import { List } from "../../models/list.model";
+import { generateId } from "../../utils/generateId";
+import { Input } from "../../shared/ui/Input";
+import { InputWithLabel } from "../../shared/ui/InputWithLabel";
+import { SubmitButton } from "../../shared/ui/SubmitButton";
 import { useEffect } from "react";
 
 interface NewListFormProps {

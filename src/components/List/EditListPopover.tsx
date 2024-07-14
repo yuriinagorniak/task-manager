@@ -1,6 +1,6 @@
-import { getContrastColor } from "../utils/getContrastColor";
+import { getContrastColor } from "../../utils/getContrastColor";
 import { EditListAnchorType } from "./EditList";
-import { Color } from "../models/color.model";
+import { Color } from "../../models/color.model";
 import Popover from "@mui/material/Popover";
 import React from "react";
 
