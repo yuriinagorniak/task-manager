@@ -3,6 +3,7 @@ import { Snackbar } from "@mui/material";
 import { useTasks } from "../hooks/useTasks";
 import { useLists } from "../hooks/useLists";
 import { ToDo } from "./ToDo";
+import { Loader } from "./Loader";
 
 const MainPage = () => {
     const [snackbarMessage, setSnackbarMessage] = useState<string>("");
@@ -29,7 +30,7 @@ const MainPage = () => {
                 {tasks && lists ? (
                     <ToDo initialLists={lists} initialTasks={tasks} showMessage={showMessage} />
                 ) : (
-                    <h1>Loading...</h1>
+                    <Loader />
                 )}
             </main>
             <Snackbar
